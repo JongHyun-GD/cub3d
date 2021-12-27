@@ -14,7 +14,8 @@ NAME		= cub3d
 SRC_DIR		= ./src/
 C_FILES		= main.c		\
 			  parser.c		\
-			  key_hook.c
+			  key_hook.c	\
+			  checker.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(C_FILES))
 OBJS		= $(SRCS:.c=.o)
@@ -25,6 +26,9 @@ OBJS		= $(SRCS:.c=.o)
 all			: $(NAME)
 
 bonus		: all
+
+parser		: $(LIBFT) $(OBJS)
+	gcc $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(LFLAGS)
 
 $(NAME)		: $(MLX) $(LIBFT) $(OBJS)
 	gcc $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT) $(MLX) -o $(NAME) $(LFLAGS)
