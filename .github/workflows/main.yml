@@ -13,8 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
-      run: make
     - uses: alexandregv/norminette-action@v3
       with:
         flags: './src'
