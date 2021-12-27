@@ -8,11 +8,11 @@ void	error_exit(char *error_msg)
 
 void	check_param(int argc, char **argv)
 {
-	if (argc > 2)
+	if (argc != 2 && argc != 3)
 		error_exit("Invalid parameters.");
-	if (argc == 2)
+	if (argc == 3)
 	{
-		if (ft_strncmp("--save", argv[1], 7) != 0)
+		if (ft_strncmp("--save", argv[2], 7) != 0)
 			error_exit("Invalid parameters.");
 	}
 }
