@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 11:56:02 by dason            ###   ########.fr       */
+/*   Updated: 2021/12/28 21:50:57 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 #include <fcntl.h>
 
 void	parser(int argc, char **argv, t_info *info);
-void	checker(int argc, char **argv, t_info *info);
-void	error_exit(char *error_msg);
+void	check_param(int argc, char **argv);
+void	check_cub_get_type_data(t_info *info, int fd);
+bool	is_type_id(char *type_id);
+void	check_num_of_type_data(char **map_type);
 
 #endif

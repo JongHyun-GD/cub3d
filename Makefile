@@ -12,13 +12,16 @@ LIBFT		= $(addprefix $(LIBFT_DIR), $(LIBFT_NAME))
 INC_LINK	= -I./includes/
 NAME		= cub3d
 SRC_DIR		= ./src/
-C_FILES		= main.c					\
-			  parser.c					\
-			  key_hook.c				\
-			  checker.c					\
-			  get_next_line.c			\
-			  get_next_line_utils.c		\
-			  error_exit.c				\
+
+C_FILES		= get_next_line.c					\
+			  get_next_line_utils.c				\
+			  key_hook.c						\
+			  main.c							\
+			  parser.c							\
+			  parser_check_cub_get_type_data.c	\
+			  parser_check_param.c				\
+			  parser_check_type.c				\
+			  parser.c							\
 			  utils.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(C_FILES))

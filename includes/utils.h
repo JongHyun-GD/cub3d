@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 19:27:18 by dason             #+#    #+#             */
+/*   Updated: 2021/12/28 21:36:12 by dason            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_H
 # define UTILS_H
 
-#include <stdlib.h>
+# include "info.h"
+# include <stdio.h>
+# include <stdlib.h>
 
 void	free_double_pointer(char ***s);
 void	free_info(t_info *info);
+void	error_exit(char *error_msg);
 
 #endif

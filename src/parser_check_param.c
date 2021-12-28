@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   parser_check_param.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 20:02:59 by dason             #+#    #+#             */
-/*   Updated: 2021/12/27 20:03:06 by dason            ###   ########.fr       */
+/*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
+/*   Updated: 2021/12/28 21:47:10 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	error_exit(char *error_msg)
+void	check_param(int argc, char **argv)
 {
-	printf("ERROR: %s\n", error_msg);
-	exit(1);
+	if (argc != 2 && argc != 3)
+		error_exit("Invalid parameters.");
+	if (argc == 3)
+	{
+		if (ft_strncmp("--save", argv[2], 7) != 0)
+			error_exit("Invalid parameters.");
+	}
 }

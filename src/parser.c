@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 12:17:46 by dason            ###   ########.fr       */
+/*   Updated: 2021/12/28 21:46:51 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	print_info(t_info *info)
 {
 	printf("### print_info ###\n");
+	printf("is_save: %d\n", info->is_save);
 	printf("map_height: %d\n", info->map_info.map_height);
 	printf("map_width: %d\n", info->map_info.map_width);
 	printf("no_texture_path: %s\n", info->map_info.no_texture_path);
@@ -30,12 +31,15 @@ void	print_info(t_info *info)
 
 void	parser(int argc, char **argv, t_info *info)
 {
+	int		fd;
+
 	ft_memset(info, 0, sizeof(t_info));
-	printf("# Before\n");
-	print_info(info);
-	checker(argc, argv, info);
+	check_param(argc, argv);
 	if (argc == 3)
 		info->is_save = true;
-	printf("# After\n");
+	fd = open((char *)argv[1], O_RDONLY);
+	if (fd == -1)
+		error_exit("The file does not exist.");
+	check_cub_get_type_data(info, fd);
 	print_info(info);
 }
