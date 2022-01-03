@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 16:02:54 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:16:10 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_num_of_type_data(char **s)
 	return (count);
 }
 
-static bool check_num_of_type_data_fc(char **map_type)
+static bool	check_num_of_type_data_fc(char **map_type)
 {
 	char	**tmp;
 	int		i;
@@ -58,5 +58,5 @@ void	check_num_of_type_data(char **map_type, int type_id)
 		error_exit("Too many type identifier data.: NO SO WA EA S");
 	if ((type_id == TYPE_F || type_id == TYPE_C) && \
 		check_num_of_type_data_fc(map_type) == false)
-		error_exit("Too many type identifier data.: S");
+		error_exit("Too many type identifier data.: F C");
 }

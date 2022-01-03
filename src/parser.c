@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 15:36:54 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:21:59 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	print_info(t_info *info)
 {
 	printf("### print_info ###\n");
 	printf("is_save: %d\n", info->is_save);
-	printf("map_height: %d\n", info->map_info.map_height);
 	printf("map_width: %d\n", info->map_info.map_width);
+	printf("map_height: %d\n", info->map_info.map_height);
 	printf("no_texture_path: %s\n", info->map_info.no_texture_path);
 	printf("so_texture_path: %s\n", info->map_info.so_texture_path);
 	printf("we_texture_path: %s\n", info->map_info.we_texture_path);

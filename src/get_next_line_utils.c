@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 18:54:57 by dason             #+#    #+#             */
-/*   Updated: 2021/11/03 14:10:11 by jongpark         ###   ########.fr       */
+/*   Updated: 2022/01/03 16:27:58 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 
 size_t	ft_isnewline(char *s)
 {
-	size_t	 index;
+	size_t	index;
 
 	if (!s)
 		return (0);
