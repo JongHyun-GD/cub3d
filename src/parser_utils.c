@@ -6,11 +6,11 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:24:58 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 15:01:18 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 15:08:22 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "parser.h"
 
 void	error_exit(char *error_msg)
 {
@@ -18,7 +18,27 @@ void	error_exit(char *error_msg)
 	exit(1);
 }
 
-void	get_kind_of_type(char *type_id)
+int	get_kind_of_type(char *type_id)
 {
-	
+	if (ft_strncmp("R", type_id, 2) == 0)
+		return (TYPE_R);
+	if (ft_strncmp("NO", type_id, 3) == 0)
+		return (TYPE_NO);
+	if (ft_strncmp("SO", type_id, 3) == 0)
+		return (TYPE_SO);
+	if (ft_strncmp("WE", type_id, 3) == 0)
+		return (TYPE_WE);
+	if (ft_strncmp("EA", type_id, 3) == 0)
+		return (TYPE_EA);
+	if (ft_strncmp("S", type_id, 2) == 0)
+		return (TYPE_S);
+	if (ft_strncmp("F", type_id, 2) == 0)
+		return (TYPE_F);
+	if (ft_strncmp("C", type_id, 2) == 0)
+		return (TYPE_C);
+	if (ft_strncmp("1", type_id, 1) == 0)
+		return (TYPE_MAP);
+	if (ft_strncmp(" ", type_id, 1) == 0)
+		return (TYPE_MAP);
+	return (TYPE_NONE);
 }

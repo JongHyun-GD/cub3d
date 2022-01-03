@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 14:39:07 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 16:02:54 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,19 @@ static bool check_num_of_type_data_fc(char **map_type)
 	return (true);
 }
 
-void	check_num_of_type_data(char **map_type)
+void	check_num_of_type_data(char **map_type, int type_id)
 {
-	char	*type_id;
 	int		num_of_type_data;
 
-	type_id = map_type[0];
 	num_of_type_data = get_num_of_type_data(map_type);
-	if (ft_strncmp("R", type_id, 2) == 0 && \
-		num_of_type_data != 3)
-		error_exit("Too many type identifier data.");
-	if ((ft_strncmp("NO", type_id, 3) == 0 || \
-		ft_strncmp("SO", type_id, 3) == 0 || \
-		ft_strncmp("WE", type_id, 3) == 0 || \
-		ft_strncmp("EA", type_id, 3) == 0 || \
-		ft_strncmp("S", type_id, 2) == 0) && \
+	if (type_id == TYPE_R && num_of_type_data != 3)
+		error_exit("Too many type identifier data.: R");
+	if ((type_id == TYPE_NO || type_id == TYPE_SO || \
+		type_id == TYPE_WE || type_id == TYPE_EA || \
+		type_id == TYPE_S) && \
 		num_of_type_data != 2)
-		error_exit("Too many type identifier data.");
-	if ((ft_strncmp("F", type_id, 2) == 0 || \
-		ft_strncmp("C", type_id, 2) == 0) && \
+		error_exit("Too many type identifier data.: NO SO WA EA S");
+	if ((type_id == TYPE_F || type_id == TYPE_C) && \
 		check_num_of_type_data_fc(map_type) == false)
-		error_exit("Too many type identifier data.");
+		error_exit("Too many type identifier data.: S");
 }

@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 14:55:16 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 15:36:54 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ void	print_info(t_info *info)
 	printf("\n");
 }
 
-static void	check_type(char **map_type, char *type_id)
-{
-	check_type_id(type_id);
-	check_num_of_type_data(map_type);
-	check_invalid_type_data(map_type);
-}
-
 // TODO: BFS, DFS 공부하기
 /* TODO: check_map(int fd)의 이름 변경, 위치 변경
 	- map을 체크하고 그 데이터를 info 넣는 기능임. */
@@ -49,16 +42,18 @@ static void	check_type_get_type_data(t_info *info, int fd)
 {
 	char	*line;
 	char	**map_type;
-	char	*type_id;
+	int		type_id;
 
 	while (get_next_line(fd, &line) > 0)
 	{
 		map_type = ft_split(line, ' ');
-		type_id = map_type[0];
-		if (type_id != NULL)
+		if (map_type[0] != NULL)
 		{
-			check_type(map_type, type_id);
-			get_type_data(info, map_type);
+			check_type_id(map_type[0]);
+			type_id = get_kind_of_type(map_type[0]);
+			check_num_of_type_data(map_type, type_id);
+			check_invalid_type_data(map_type, type_id);
+			get_type_data(info, map_type, type_id);
 		}
 		free(line);
 		free_double_pointer(&map_type);

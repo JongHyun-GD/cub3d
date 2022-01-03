@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:27:18 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 11:31:29 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 15:03:15 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@
 
 void	free_double_pointer(char ***s);
 void	free_info(t_info *info);
-void	error_exit(char *error_msg);
 
 #endif

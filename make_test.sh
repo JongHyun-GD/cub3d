@@ -6,10 +6,10 @@
 
 
 clear
-if [ -n $1 ]; then
+if [ -n "$1" ]; then
 	echo "./cub3d $1"
 	./cub3d $1
-	echo ""
+	echo -e "\n"
 fi
 
 if [ -z $1 ]; then
@@ -18,12 +18,12 @@ if [ -z $1 ]; then
 
 	echo "./cub3d assets/maps/doesntexistmap.cub"
 	./cub3d assets/maps/doesntexistmap.cub
-	echo ""
+	echo -e "\n"
 
 	for TEST_FILE in $LS
 	do
 		echo "./cub3d $MAP_DIR/$TEST_FILE"
 		./cub3d $MAP_DIR/$TEST_FILE
-		echo ""
+		echo -e "\n"
 	done
 fi

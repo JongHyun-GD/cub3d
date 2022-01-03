@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 14:59:27 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 15:36:54 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@
 # define TYPE_S 6
 # define TYPE_F 7
 # define TYPE_C 8
-# define TYPE_map 9
+# define TYPE_MAP 9
 
 /*
 **	MAIN
 */
 void	parser(int argc, char **argv, t_info *info);
 void	check_param(int argc, char **argv);
-void	get_type_data(t_info *info, char **map_type);
 void	check_type_id(char *type_id);
-void	check_num_of_type_data(char **map_type);
-void	check_invalid_type_data(char **map_type);
+void	check_num_of_type_data(char **map_type, int type_id);
+void	check_invalid_type_data(char **map_type, int type_id);
+void	get_type_data(t_info *info, char **map_type, int type_id);
 
 /*
 **	UTILS
 */
 void	error_exit(char *error_msg);
-void	get_kind_of_type()
+int		get_kind_of_type(char *type_id);
 
 #endif
