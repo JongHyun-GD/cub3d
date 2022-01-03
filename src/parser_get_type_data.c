@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 15:37:35 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 16:39:27 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_type_data(t_info *info, char **map_type, int type_id)
 	if (type_id == TYPE_R)
 	{
 		info->map_info.map_width = ft_atoi(map_type[1]);
-		info->map_info.map_width = ft_atoi(map_type[2]);
+		info->map_info.map_height = ft_atoi(map_type[2]);
 	}
 	if (type_id == TYPE_NO)
 		info->map_info.no_texture_path = ft_strdup(map_type[1]);
