@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 19:27:18 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 11:31:29 by dason            ###   ########.fr       */
+/*   Created: 2021/12/28 12:24:58 by dason             #+#    #+#             */
+/*   Updated: 2022/01/03 15:01:18 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include "../libft/includes/libft.h"
-# include "info.h"
-# include <stdio.h>
-# include <stdlib.h>
+void	error_exit(char *error_msg)
+{
+	ft_putstr_fd(error_msg, 2);
+	exit(1);
+}
 
-void	free_double_pointer(char ***s);
-void	free_info(t_info *info);
-void	error_exit(char *error_msg);
-
-#endif
+void	get_kind_of_type(char *type_id)
+{
+	
+}

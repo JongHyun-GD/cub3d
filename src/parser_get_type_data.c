@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_cub_get_type_data.c                   :+:      :+:    :+:   */
+/*   parser_get_type_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 21:53:55 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:22:52 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	get_type_data_fc(t_info *info, char **map_type)
 
 /* TODO: 함수 이름 변경
 	- type_data보다 나은 단어가 있는지? */
-static void	get_type_data(t_info *info, char **map_type)
+void	get_type_data(t_info *info, char **map_type)
 {
 	char	*type_id;
 
@@ -50,32 +50,4 @@ static void	get_type_data(t_info *info, char **map_type)
 	if (ft_strncmp("F", type_id, 2) == 0 || \
 		ft_strncmp("C", type_id, 2) == 0)
 		get_type_data_fc(info, map_type);
-}
-
-// TODO: BFS, DFS 공부하기
-/* TODO: check_map(int fd)의 이름 변경, 위치 변경
-	- map을 체크하고 그 데이터를 info 넣는 기능임. */
-/* TODO: checker 이름 변경
-	- 동사라서 class 이름 같다 */
-/* TODO: 유형 식별자가 끝인지 체크하는 함수 만들기
-	- R, NO, ... F, C의 값이 전부 있으면 그 다음부터는 map */
-void	check_cub_get_type_data(t_info *info, int fd)
-{
-	char	*line;
-	char	**map_type;
-
-	while (get_next_line(fd, &line) > 0)
-	{
-		map_type = ft_split(line, ' ');
-		if (is_type_id(map_type[0]) == false)
-			error_exit("Invalid type identifier.");
-		if (map_type[0] != NULL)
-		{
-			check_num_of_type_data(map_type);
-			get_type_data(info, map_type);
-		}
-		free(line);
-		free_double_pointer(&map_type);
-	}
-	free(line);
 }

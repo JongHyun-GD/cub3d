@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_type.c                                :+:      :+:    :+:   */
+/*   parser_check_num_of_type_data.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 21:52:23 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:39:07 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-bool	is_type_id(char *type_id)
-{
-	if (type_id == NULL)
-		return (true);
-	if (ft_strncmp("R", type_id, 2) == 0)
-		return (true);
-	if (ft_strncmp("NO", type_id, 3) == 0)
-		return (true);
-	if (ft_strncmp("SO", type_id, 3) == 0)
-		return (true);
-	if (ft_strncmp("WE", type_id, 3) == 0)
-		return (true);
-	if (ft_strncmp("EA", type_id, 3) == 0)
-		return (true);
-	if (ft_strncmp("S", type_id, 2) == 0)
-		return (true);
-	if (ft_strncmp("F", type_id, 2) == 0)
-		return (true);
-	if (ft_strncmp("C", type_id, 2) == 0)
-		return (true);
-	if (ft_strncmp("1", type_id, 1) == 0)
-		return (true);
-	if (ft_strncmp(" ", type_id, 1) == 0)
-		return (true);
-	return (false);
-}
 
 static int	get_num_of_type_data(char **s)
 {
@@ -47,6 +20,28 @@ static int	get_num_of_type_data(char **s)
 	while (s[count])
 		count++;
 	return (count);
+}
+
+static bool check_num_of_type_data_fc(char **map_type)
+{
+	char	**tmp;
+	int		i;
+	int		j;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (map_type[++i])
+	{
+		tmp = ft_split(map_type[i], ',');
+		j = -1;
+		while (tmp[++j])
+			count++;
+		free_double_pointer(&tmp);
+	}
+	if (count != 3)
+		return (false);
+	return (true);
 }
 
 void	check_num_of_type_data(char **map_type)
@@ -68,6 +63,6 @@ void	check_num_of_type_data(char **map_type)
 		error_exit("Too many type identifier data.");
 	if ((ft_strncmp("F", type_id, 2) == 0 || \
 		ft_strncmp("C", type_id, 2) == 0) && \
-		!(2 <= num_of_type_data && num_of_type_data <= 4))
+		check_num_of_type_data_fc(map_type) == false)
 		error_exit("Too many type identifier data.");
 }

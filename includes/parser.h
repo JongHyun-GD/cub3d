@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 21:50:57 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:59:27 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,33 @@
 # include "utils.h"
 # include <stdlib.h>
 # include <stdio.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
+# define TYPE_NONE 0
+# define TYPE_R 1
+# define TYPE_NO 2
+# define TYPE_SO 3
+# define TYPE_WE 4
+# define TYPE_EA 5
+# define TYPE_S 6
+# define TYPE_F 7
+# define TYPE_C 8
+# define TYPE_map 9
+
+/*
+**	MAIN
+*/
 void	parser(int argc, char **argv, t_info *info);
 void	check_param(int argc, char **argv);
-void	check_cub_get_type_data(t_info *info, int fd);
-bool	is_type_id(char *type_id);
+void	get_type_data(t_info *info, char **map_type);
+void	check_type_id(char *type_id);
 void	check_num_of_type_data(char **map_type);
+void	check_invalid_type_data(char **map_type);
+
+/*
+**	UTILS
+*/
+void	error_exit(char *error_msg);
+void	get_kind_of_type()
 
 #endif

@@ -6,17 +6,11 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:24:58 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 21:35:54 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:57:20 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-void	error_exit(char *error_msg)
-{
-	printf("ERROR: %s\n", error_msg);
-	exit(1);
-}
 
 void	free_double_pointer(char ***s)
 {

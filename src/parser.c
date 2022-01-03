@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 21:46:51 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/03 14:55:16 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,43 @@ void	print_info(t_info *info)
 	printf("\n");
 }
 
+static void	check_type(char **map_type, char *type_id)
+{
+	check_type_id(type_id);
+	check_num_of_type_data(map_type);
+	check_invalid_type_data(map_type);
+}
+
+// TODO: BFS, DFS 공부하기
+/* TODO: check_map(int fd)의 이름 변경, 위치 변경
+	- map을 체크하고 그 데이터를 info 넣는 기능임. */
+/* TODO: checker 이름 변경
+	- 동사라서 class 이름 같다 */
+/* TODO: 유형 식별자가 끝인지 체크하는 함수 만들기
+	- R, NO, ... F, C의 값이 전부 있으면 그 다음부터는 map */
+/* TODO: info안에 유형 식별자값이 0인 경우 예외처리
+	- get_type_data 후, info안에 값들이 전부 있는지 확인 */
+static void	check_type_get_type_data(t_info *info, int fd)
+{
+	char	*line;
+	char	**map_type;
+	char	*type_id;
+
+	while (get_next_line(fd, &line) > 0)
+	{
+		map_type = ft_split(line, ' ');
+		type_id = map_type[0];
+		if (type_id != NULL)
+		{
+			check_type(map_type, type_id);
+			get_type_data(info, map_type);
+		}
+		free(line);
+		free_double_pointer(&map_type);
+	}
+	free(line);
+}
+
 void	parser(int argc, char **argv, t_info *info)
 {
 	int		fd;
@@ -40,6 +77,6 @@ void	parser(int argc, char **argv, t_info *info)
 	fd = open((char *)argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("The file does not exist.");
-	check_cub_get_type_data(info, fd);
+	check_type_get_type_data(info, fd);
 	print_info(info);
 }
