@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: dason <dason@student.42seoul.kr>           +	1	uuu#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
-/*   Updated: 2021/12/28 15:33:23 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 14:37:46 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_map
 	char	*we_texture_path;
 	char	*ea_texture_path;
 	char	*s_texture_path;
-	char	*floor_color;
-	char	*ceiling_color;
+	int		floor_color;
+	int		ceiling_color;
 	char	**map;
 }	t_map;
 

@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:24:58 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 14:57:20 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 14:45:17 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,4 @@ void	free_info(t_info *info)
 	free(info->map_info.we_texture_path);
 	free(info->map_info.ea_texture_path);
 	free(info->map_info.s_texture_path);
-	free(info->map_info.floor_color);
-	free(info->map_info.ceiling_color);
 }

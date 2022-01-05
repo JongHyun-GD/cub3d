@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 17:21:59 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 14:45:44 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	print_info(t_info *info)
 	printf("we_texture_path: %s\n", info->map_info.we_texture_path);
 	printf("ea_texture_path: %s\n", info->map_info.ea_texture_path);
 	printf("s_exture_path: %s\n", info->map_info.s_texture_path);
-	printf("floor_color: %s\n", info->map_info.floor_color);
-	printf("ceiling_color: %s\n", info->map_info.ceiling_color);
+	printf("floor_color: %d\n", info->map_info.floor_color);
+	printf("ceiling_color: %d\n", info->map_info.ceiling_color);
 	printf("\n");
 }
 

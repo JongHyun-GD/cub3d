@@ -6,27 +6,44 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 16:39:27 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 16:38:33 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-/* TODO: F와 C를 int형에 담는 함수 만들기
-	- 유형 식별자 F와 C의 값을 비트 연산자를 이용해 int형으로 */
+static int	compress_int_to_rgb(int rgb, int color)
+{
+	rgb = rgb << 8;
+	rgb = rgb + color;
+	return (rgb);
+}
+
 static void	get_type_data_fc(t_info *info, char **map_type)
 {
 	char	*type_id;
+	char	**split_data;
+	int		rgb;
+	int		i;
+	int		j;
 
+	rgb = 0;
 	type_id = map_type[0];
+	i = 0;
+	while (map_type[++i])
+	{
+		split_data = ft_split(map_type[i], ',');
+		j = -1;
+		while (split_data[++j])
+			rgb = compress_int_to_rgb(rgb, ft_atoi(split_data[j]));
+		free_double_pointer(&split_data);
+	}
 	if (ft_strncmp("F", type_id, 2) == 0)
-		info->map_info.floor_color = ft_strdup(map_type[1]);
+		info->map_info.floor_color = rgb;
 	if (ft_strncmp("C", type_id, 2) == 0)
-		info->map_info.ceiling_color = ft_strdup(map_type[1]);
+		info->map_info.ceiling_color = rgb;
 }
 
-/* TODO: 함수 이름 변경
-	- type_data보다 나은 단어가 있는지? */
 void	get_type_data(t_info *info, char **map_type, int type_id)
 {
 	if (type_id == TYPE_R)
