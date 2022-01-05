@@ -18,7 +18,7 @@ C_FILES		= get_next_line.c					\
 			  key_hook.c						\
 			  main.c							\
 			  parser_check_invalid_type_data.c	\
-			  parser_check_num_of_type_data.c	\
+			  parser_check_type_data.c			\
 			  parser_check_param.c				\
 			  parser_check_type_id.c			\
 			  parser_get_type_data.c			\

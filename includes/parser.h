@@ -6,13 +6,14 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 15:36:54 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 18:20:28 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
+# include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
 # include "get_next_line.h"
 # include "info.h"
@@ -39,8 +40,10 @@
 void	parser(int argc, char **argv, t_info *info);
 void	check_param(int argc, char **argv);
 void	check_type_id(char *type_id);
-void	check_num_of_type_data(char **map_type, int type_id);
-void	check_invalid_type_data(char **map_type, int type_id);
+void	check_type_data(char **map_type, int type_id);
+void	check_type_data_r(char **map_type);
+void	check_type_data_texture(char **map_type);
+void	check_type_data_fc(char **map_type);
 void	get_type_data(t_info *info, char **map_type, int type_id);
 
 /*

@@ -6,13 +6,13 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 16:30:27 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 18:18:08 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	check_r(char **map_type)
+void	check_type_data_r(char **map_type)
 {
 	int		i;
 	int		j;
@@ -36,7 +36,7 @@ static void	check_r(char **map_type)
 		error_exit("Invalid type data - Numbers are out of range: R");
 }
 
-static void	check_texture_file_exist(char **map_type)
+void	check_type_data_texture(char **map_type)
 {
 	char	*pathname;
 	int		fd;
@@ -99,21 +99,8 @@ static void	check_fc_range(char **map_type)
 	}
 }
 
-void	check_invalid_type_data(char **map_type, int type_id)
+void	check_type_data_fc(char **map_type)
 {
-	if (type_id == TYPE_R)
-	{
-		check_r(map_type);
-	}
-	if (type_id == TYPE_NO || type_id == TYPE_SO || \
-		type_id == TYPE_WE || type_id == TYPE_EA || \
-		type_id == TYPE_S)
-	{
-		check_texture_file_exist(map_type);
-	}
-	if (type_id == TYPE_F || type_id == TYPE_C)
-	{
-		check_fc_digit(map_type);
-		check_fc_range(map_type);
-	}
+	check_fc_digit(map_type);
+	check_fc_range(map_type);
 }

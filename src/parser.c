@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 14:45:44 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 18:21:25 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static void	check_type_get_type_data(t_info *info, int fd)
 		{
 			check_type_id(map_type[0]);
 			type_id = get_kind_of_type(map_type[0]);
-			check_num_of_type_data(map_type, type_id);
-			check_invalid_type_data(map_type, type_id);
+			check_type_data(map_type, type_id);
 			get_type_data(info, map_type, type_id);
 		}
 		free(line);

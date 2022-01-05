@@ -25,6 +25,8 @@ typedef struct s_map
 {
 	int		map_width;
 	int		map_height;
+	// int		texture_width;
+	// int		texture_height;
 	char	*no_texture_path;
 	char	*so_texture_path;
 	char	*we_texture_path;

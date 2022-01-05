@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_num_of_type_data.c                    :+:      :+:    :+:   */
+/*   parser_check_type_data.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 16:34:01 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 18:30:51 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,32 @@ static bool	check_num_of_type_data_fc(char **map_type)
 	return (true);
 }
 
-void	check_num_of_type_data(char **map_type, int type_id)
+/* TODO: 함수 이름 변경
+	- parser_check_invalid_type_data.c와 너무 비슷함
+	- 둘 중 뭘 바꾸든간에 */
+void	check_type_data(char **map_type, int type_id)
 {
 	int		num_of_type_data;
 
 	num_of_type_data = get_num_of_type_data(map_type);
-	if (type_id == TYPE_R && num_of_type_data != 3)
-		error_exit("Too many type identifier data.: R");
-	if ((type_id == TYPE_NO || type_id == TYPE_SO || \
+	if (type_id == TYPE_R)
+	{
+		if (num_of_type_data != 3)
+			error_exit("Too many type identifier data.: R");
+		check_type_data_r(map_type);
+	}
+	if (type_id == TYPE_NO || type_id == TYPE_SO || \
 		type_id == TYPE_WE || type_id == TYPE_EA || \
-		type_id == TYPE_S) && \
-		num_of_type_data != 2)
-		error_exit("Too many type identifier data.: NO SO WA EA S");
-	if ((type_id == TYPE_F || type_id == TYPE_C) && \
-		check_num_of_type_data_fc(map_type) == false)
-		error_exit("Too many type identifier data.: F C");
+		type_id == TYPE_S)
+	{
+		if (num_of_type_data != 2)
+			error_exit("Too many type identifier data.: NO SO WA EA S");
+		check_type_data_texture(map_type);
+	}
+	if (type_id == TYPE_F || type_id == TYPE_C)
+	{
+		if (check_num_of_type_data_fc(map_type) == false)
+			error_exit("Too many type identifier data.: F C");
+		check_type_data_fc(map_type);
+	}
 }
