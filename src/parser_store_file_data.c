@@ -50,7 +50,7 @@ char	**store_file_data(char *filepath)
 	{
 		if (*line == '\0')
 			continue ;
-		tmp_file_data[i++] = line;	
+		tmp_file_data[i++] = line;
 	}
 	close(fd);
 	return (tmp_file_data);

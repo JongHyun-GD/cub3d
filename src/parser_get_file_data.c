@@ -33,7 +33,7 @@ static void	check_num_of_type_id(char **tmp_file_data)
 
 static void	check_file_data(t_info *info)
 {
-	t_map map_info;
+	t_map	map_info;
 
 	map_info = info->map_info;
 	if (map_info.no_texture_path == NULL)
@@ -56,7 +56,7 @@ static void	check_file_data(t_info *info)
 
 /* TODO: info안에 유형 식별자값이 0인 경우 예외처리
 	- get_type_data 후, info안에 값들이 전부 있는지 확인 */
-void get_file_data(t_info *info, char **tmp_file_data)
+void	get_file_data(t_info *info, char **tmp_file_data)
 {
 	char	**type_line;
 	int		type_count;

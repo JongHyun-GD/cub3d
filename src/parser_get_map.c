@@ -27,7 +27,7 @@ static void	is_space_nearby(char **map, int x, int y)
 		end_x = x + 1;
 		while (start_x <= end_x)
 		{
-			if (start_x< 0 || start_y < 0)
+			if (start_x < 0 || start_y < 0)
 				error_exit("The map is not closed.");
 			if (map[start_y][start_x] == ' ' || \
 				map[start_y][start_x] == '\0')
@@ -38,11 +38,10 @@ static void	is_space_nearby(char **map, int x, int y)
 	}
 }
 
-static void check_closed_map(char **map)
+static void	check_closed_map(char **map)
 {
-	printf("# check map\n");
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	j = -1;
 	while (map[++j])
@@ -56,12 +55,12 @@ static void check_closed_map(char **map)
 	}
 }
 
-void get_map(t_info *info, char **tmp_file_data)
+void	get_map(t_info *info, char **tmp_file_data)
 {
-	char **map;
-	char *line;
-	int m_i;
-	int i;
+	char	**map;
+	char	*line;
+	int		m_i;
+	int		i;
 
 	m_i = 0;
 	map = (char **)ft_calloc(info->map_info.map_height + 1, sizeof(char *));
@@ -71,7 +70,7 @@ void get_map(t_info *info, char **tmp_file_data)
 	while (tmp_file_data[++i])
 	{
 		if (i == 5)
-			break;
+			break ;
 	}
 	while (tmp_file_data[++i])
 	{

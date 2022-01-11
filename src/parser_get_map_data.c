@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-static void check_map_data(char *line)
+static void	check_map_data(char *line)
 {
 	int		i;
 
@@ -20,7 +20,8 @@ static void check_map_data(char *line)
 	while (line[++i])
 	{
 		if (line[i] == '1' || line[i] == '0' || line[i] == ' ' || \
-			line[i] == 'N' || line[i] == 'E' || line[i] == 'W' || line[i] == 'S')
+			line[i] == 'N' || line[i] == 'E' || line[i] == 'W' || \
+			line[i] == 'S')
 			continue ;
 		error_exit("Map file is not valid.");
 	}

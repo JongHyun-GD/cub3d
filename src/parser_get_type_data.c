@@ -18,7 +18,8 @@ static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
 	void	*texture;
 
 	filepath = map_type[1];
-	texture = mlx_xpm_file_to_image(info->mlx_info.mlx, filepath, &info->map_info.texture_width, &info->map_info.texture_height);
+	texture = mlx_xpm_file_to_image(info->mlx_info.mlx, filepath, \
+		&info->map_info.texture_width, &info->map_info.texture_height);
 	if (texture == NULL)
 		error_exit("Map file does not exist.");
 	if (type_id == TYPE_NO)
@@ -95,12 +96,12 @@ void	get_type_data(t_info *info, char **map_type, int type_id)
 {
 	if (type_id == TYPE_NO || type_id == TYPE_SO || \
 		type_id == TYPE_WE || type_id == TYPE_EA)
-		{
-			if (get_num_of_type_data(map_type) != 2)
-				error_exit("Too many type identifier data.: NO SO WA EA S");
-			check_type_data_texture(map_type);
-			get_type_data_texture(info, map_type, type_id);
-		}
+	{
+		if (get_num_of_type_data(map_type) != 2)
+			error_exit("Too many type identifier data.: NO SO WA EA S");
+		check_type_data_texture(map_type);
+		get_type_data_texture(info, map_type, type_id);
+	}
 	if (type_id == TYPE_F || type_id == TYPE_C)
 	{
 		if (check_num_of_type_data_fc(map_type) == false)

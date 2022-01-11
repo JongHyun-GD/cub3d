@@ -12,26 +12,27 @@
 
 #include "parser.h"
 
-// TEST_FUNCTION
-void print_info(t_info *info)
-{
-	printf("### print_info ###\n");
-	printf("no_texture_path: %p\n", info->map_info.no_texture_path);
-	printf("so_texture_path: %p\n", info->map_info.so_texture_path);
-	printf("we_texture_path: %p\n", info->map_info.we_texture_path);
-	printf("ea_texture_path: %p\n", info->map_info.ea_texture_path);
-	printf("floor_color: %d\n", info->map_info.floor_color);
-	printf("ceiling_color: %d\n", info->map_info.ceiling_color);
-	printf("map_width: %d\n", info->map_info.map_width);
-	printf("map_height: %d\n", info->map_info.map_height);
-	printf("map: \n");
-	if (info->map_info.map)
-		for (int i = 0; info->map_info.map[i]; i++)
-			printf("%s\n", info->map_info.map[i]);
-	printf("\n");
-}
+// void	print_info(t_info *info)
+// {
+// 	printf("### print_info ###\n");
+// 	printf("no_texture_path: %p\n", info->map_info.no_texture_path);
+// 	printf("so_texture_path: %p\n", info->map_info.so_texture_path);
+// 	printf("we_texture_path: %p\n", info->map_info.we_texture_path);
+// 	printf("ea_texture_path: %p\n", info->map_info.ea_texture_path);
+// 	printf("floor_color: %d\n", info->map_info.floor_color);
+// 	printf("ceiling_color: %d\n", info->map_info.ceiling_color);
+// 	printf("map_width: %d\n", info->map_info.map_width);
+// 	printf("map_height: %d\n", info->map_info.map_height);
+// 	printf("map: \n");
+// 	if (info->map_info.map)
+// 	{
+// 		for(int i = 0; info->map_info.map[i]; i++)
+// 			printf("%s\n", info->map_info.map[i]);
+// 	}
+// 	printf("\n");
+// }
 
-static void check_param(int argc, char *filepath)
+static void	check_param(int argc, char *filepath)
 {
 	char	*extension;
 
@@ -42,7 +43,7 @@ static void check_param(int argc, char *filepath)
 		error_exit("It's an incorrrect extension.");
 }
 
-void parser(int argc, char **argv, t_info *info)
+void	parser(int argc, char **argv, t_info *info)
 {
 	char	**tmp_file_data;
 
