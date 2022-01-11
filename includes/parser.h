@@ -24,32 +24,32 @@
 # include <fcntl.h>
 
 # define TYPE_NONE 0
-# define TYPE_R 1
-# define TYPE_NO 2
-# define TYPE_SO 3
-# define TYPE_WE 4
-# define TYPE_EA 5
-# define TYPE_S 6
-# define TYPE_F 7
-# define TYPE_C 8
-# define TYPE_MAP 9
+# define TYPE_NO 1
+# define TYPE_SO 2
+# define TYPE_WE 3
+# define TYPE_EA 4
+# define TYPE_F 5
+# define TYPE_C 6
+# define TYPE_MAP 7
 
 /*
 **	MAIN
 */
 void	parser(int argc, char **argv, t_info *info);
-void	check_param(int argc, char **argv);
-void	check_type_id(char *type_id);
+char	**store_file_data(char *filepath);
+void	get_file_data(t_info *info, char **tmp_file_data);
 void	check_type_data(char **map_type, int type_id);
-void	check_type_data_r(char **map_type);
 void	check_type_data_texture(char **map_type);
 void	check_type_data_fc(char **map_type);
 void	get_type_data(t_info *info, char **map_type, int type_id);
+void	get_map_data(t_info *info, char **tmp_file_data);
+void	get_map(t_info *info, char **tmp_file_data);
 
 /*
 **	UTILS
 */
 void	error_exit(char *error_msg);
+bool	is_type_id(char *type_id);
 int		get_kind_of_type(char *type_id);
 
 #endif

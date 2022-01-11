@@ -12,11 +12,55 @@
 
 #include "parser.h"
 
-static int	compress_int_to_rgb(int rgb, int color)
+static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
 {
-	rgb = rgb << 8;
-	rgb = rgb + color;
-	return (rgb);
+	char	*filepath;
+	void	*texture;
+
+	filepath = map_type[1];
+	texture = mlx_xpm_file_to_image(info->mlx_info.mlx, filepath, &info->map_info.texture_width, &info->map_info.texture_height);
+	if (texture == NULL)
+		error_exit("Map file does not exist.");
+	if (type_id == TYPE_NO)
+		info->map_info.no_texture_path = texture;
+	if (type_id == TYPE_SO)
+		info->map_info.so_texture_path = texture;
+	if (type_id == TYPE_WE)
+		info->map_info.we_texture_path = texture;
+	if (type_id == TYPE_EA)
+		info->map_info.ea_texture_path = texture;
+}
+
+static int	get_num_of_type_data(char **s)
+{
+	int		count;
+
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
+}
+
+static bool	check_num_of_type_data_fc(char **map_type)
+{
+	char	**tmp;
+	int		i;
+	int		j;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (map_type[++i])
+	{
+		tmp = ft_split(map_type[i], ',');
+		j = -1;
+		while (tmp[++j])
+			count++;
+		free_double_pointer(&tmp);
+	}
+	if (count != 3)
+		return (false);
+	return (true);
 }
 
 static void	get_type_data_fc(t_info *info, char **map_type)
@@ -35,7 +79,10 @@ static void	get_type_data_fc(t_info *info, char **map_type)
 		split_data = ft_split(map_type[i], ',');
 		j = -1;
 		while (split_data[++j])
-			rgb = compress_int_to_rgb(rgb, ft_atoi(split_data[j]));
+		{
+			rgb = rgb << 8;
+			rgb = rgb + ft_atoi(split_data[j]);
+		}
 		free_double_pointer(&split_data);
 	}
 	if (ft_strncmp("F", type_id, 2) == 0)
@@ -44,38 +91,21 @@ static void	get_type_data_fc(t_info *info, char **map_type)
 		info->map_info.ceiling_color = rgb;
 }
 
-/* TODO: texture 변경 
-	- void *texture
-	- texture = mlx_xpm_file_to_image();*/
-static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
-{
-	char	*texture;
-
-	texture = ft_strdup(map_type[1]);
-	// texture = mlx_xpm_file_to_image(info->mlx_info.mlx, map_type[1], &info->map_info.texture_width, &info->map_info.texture_height);
-	if (type_id == TYPE_NO)
-		info->map_info.no_texture_path = texture;
-	if (type_id == TYPE_SO)
-		info->map_info.so_texture_path = texture;
-	if (type_id == TYPE_WE)
-		info->map_info.we_texture_path = texture;
-	if (type_id == TYPE_EA)
-		info->map_info.ea_texture_path = texture;
-	if (type_id == TYPE_S)
-		info->map_info.s_texture_path = texture;
-}
-
 void	get_type_data(t_info *info, char **map_type, int type_id)
 {
-	if (type_id == TYPE_R)
-	{
-		info->map_info.map_width = ft_atoi(map_type[1]);
-		info->map_info.map_height = ft_atoi(map_type[2]);
-	}
 	if (type_id == TYPE_NO || type_id == TYPE_SO || \
-		type_id == TYPE_WE || type_id == TYPE_EA || \
-		type_id == TYPE_S)
-		get_type_data_texture(info, map_type, type_id);
+		type_id == TYPE_WE || type_id == TYPE_EA)
+		{
+			if (get_num_of_type_data(map_type) != 2)
+				error_exit("Too many type identifier data.: NO SO WA EA S");
+			check_type_data_texture(map_type);
+			get_type_data_texture(info, map_type, type_id);
+		}
 	if (type_id == TYPE_F || type_id == TYPE_C)
+	{
+		if (check_num_of_type_data_fc(map_type) == false)
+			error_exit("Too many type identifier data.: F C");
+		check_type_data_fc(map_type);
 		get_type_data_fc(info, map_type);
+	}
 }

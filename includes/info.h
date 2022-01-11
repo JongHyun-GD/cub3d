@@ -23,7 +23,6 @@ typedef struct s_info
 	t_mlx_info	mlx_info;
 	t_map		map_info;
 	t_vec		p_pos;
-	bool		is_save;
 }	t_info;
 
 #endif

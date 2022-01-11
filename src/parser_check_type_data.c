@@ -1,75 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_type_data.c                           :+:      :+:    :+:   */
+/*   parser_check_invalid_type_data.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 18:30:51 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/05 18:18:08 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	get_num_of_type_data(char **s)
+void	check_type_data_texture(char **map_type)
 {
-	int		count;
+	char	*filepath;
+	int		fd;
 
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
+	filepath = map_type[1];
+	fd = open(filepath, O_RDONLY);
+	if (fd == -1)
+		error_exit("invalid type data - It's not a number: NO SO WE EA S");
+	close(fd);
 }
 
-static bool	check_num_of_type_data_fc(char **map_type)
+static void	check_type_data_fc_digit(char **map_type)
 {
 	char	**tmp;
 	int		i;
 	int		j;
-	int		count;
+	int		k;
 
-	count = 0;
 	i = 0;
 	while (map_type[++i])
 	{
 		tmp = ft_split(map_type[i], ',');
 		j = -1;
 		while (tmp[++j])
-			count++;
+		{
+			k = -1;
+			while (tmp[j][++k])
+			{
+				if (!ft_isdigit(tmp[j][k]))
+				{
+					free_double_pointer(&tmp);
+					error_exit("Invalid type data - It's not a number: F C");
+				}
+			}
+		}
 		free_double_pointer(&tmp);
 	}
-	if (count != 3)
-		return (false);
-	return (true);
 }
 
-/* TODO: 함수 이름 변경
-	- parser_check_invalid_type_data.c와 너무 비슷함
-	- 둘 중 뭘 바꾸든간에 */
-void	check_type_data(char **map_type, int type_id)
+static void	check_type_data_fc_range(char **map_type)
 {
-	int		num_of_type_data;
+	char	**tmp;
+	int		i;
+	int		j;
 
-	num_of_type_data = get_num_of_type_data(map_type);
-	if (type_id == TYPE_R)
+	i = 0;
+	while (map_type[++i])
 	{
-		if (num_of_type_data != 3)
-			error_exit("Too many type identifier data.: R");
-		check_type_data_r(map_type);
+		tmp = ft_split(map_type[i], ',');
+		j = -1;
+		while (tmp[++j])
+		{
+			if (!(0 <= ft_atoi(tmp[j]) && ft_atoi(tmp[j]) <= 255))
+			{
+				free_double_pointer(&tmp);
+				error_exit("Invalid type data - Numbers are out of range: F C");
+			}
+		}
+		free_double_pointer(&tmp);
 	}
-	if (type_id == TYPE_NO || type_id == TYPE_SO || \
-		type_id == TYPE_WE || type_id == TYPE_EA || \
-		type_id == TYPE_S)
-	{
-		if (num_of_type_data != 2)
-			error_exit("Too many type identifier data.: NO SO WA EA S");
-		check_type_data_texture(map_type);
-	}
-	if (type_id == TYPE_F || type_id == TYPE_C)
-	{
-		if (check_num_of_type_data_fc(map_type) == false)
-			error_exit("Too many type identifier data.: F C");
-		check_type_data_fc(map_type);
-	}
+}
+
+void	check_type_data_fc(char **map_type)
+{
+	check_type_data_fc_digit(map_type);
+	check_type_data_fc_range(map_type);
 }

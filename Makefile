@@ -17,11 +17,12 @@ C_FILES		= get_next_line.c					\
 			  get_next_line_utils.c				\
 			  key_hook.c						\
 			  main.c							\
-			  parser_check_invalid_type_data.c	\
 			  parser_check_type_data.c			\
-			  parser_check_param.c				\
-			  parser_check_type_id.c			\
+			  parser_get_file_data.c			\
+			  parser_get_map_data.c				\
+			  parser_get_map.c					\
 			  parser_get_type_data.c			\
+			  parser_store_file_data.c			\
 			  parser_utils.c					\
 			  parser.c							\
 			  utils.c

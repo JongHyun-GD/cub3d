@@ -14,14 +14,35 @@
 
 void	error_exit(char *error_msg)
 {
+	ft_putendl_fd("### ERROR ###", 2);
+	ft_putstr_fd("Message: ", 2);
 	ft_putstr_fd(error_msg, 2);
 	exit(1);
 }
 
+bool	is_type_id(char *type_id)
+{
+	if (ft_strncmp("NO", type_id, 3) == 0)
+		return (true);
+	if (ft_strncmp("SO", type_id, 3) == 0)
+		return (true);
+	if (ft_strncmp("WE", type_id, 3) == 0)
+		return (true);
+	if (ft_strncmp("EA", type_id, 3) == 0)
+		return (true);
+	if (ft_strncmp("F", type_id, 2) == 0)
+		return (true);
+	if (ft_strncmp("C", type_id, 2) == 0)
+		return (true);
+	if (ft_strncmp("1", type_id, 1) == 0)
+		return (true);
+	if (ft_strncmp(" ", type_id, 1) == 0)
+		return (true);
+	return (false);
+}
+
 int	get_kind_of_type(char *type_id)
 {
-	if (ft_strncmp("R", type_id, 2) == 0)
-		return (TYPE_R);
 	if (ft_strncmp("NO", type_id, 3) == 0)
 		return (TYPE_NO);
 	if (ft_strncmp("SO", type_id, 3) == 0)
@@ -30,8 +51,6 @@ int	get_kind_of_type(char *type_id)
 		return (TYPE_WE);
 	if (ft_strncmp("EA", type_id, 3) == 0)
 		return (TYPE_EA);
-	if (ft_strncmp("S", type_id, 2) == 0)
-		return (TYPE_S);
 	if (ft_strncmp("F", type_id, 2) == 0)
 		return (TYPE_F);
 	if (ft_strncmp("C", type_id, 2) == 0)
