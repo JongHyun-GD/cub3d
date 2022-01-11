@@ -38,6 +38,8 @@ bool	is_type_id(char *type_id)
 		return (true);
 	if (ft_strncmp(" ", type_id, 1) == 0)
 		return (true);
+	if (ft_strncmp("0", type_id, 1) == 0)
+		return (true);
 	return (false);
 }
 
@@ -58,6 +60,8 @@ int	get_kind_of_type(char *type_id)
 	if (ft_strncmp("1", type_id, 1) == 0)
 		return (TYPE_MAP);
 	if (ft_strncmp(" ", type_id, 1) == 0)
+		return (TYPE_MAP);
+	if (ft_strncmp("0", type_id, 1) == 0)
 		return (TYPE_MAP);
 	return (TYPE_NONE);
 }

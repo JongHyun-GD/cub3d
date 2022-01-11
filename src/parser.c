@@ -47,7 +47,6 @@ void parser(int argc, char **argv, t_info *info)
 	char	**tmp_file_data;
 
 	check_param(argc, argv[1]);
-	ft_memset(&info->map_info, 0, sizeof(t_map));
 	tmp_file_data = store_file_data(argv[1]);
 	get_file_data(info, tmp_file_data);
 	get_map(info, tmp_file_data);
