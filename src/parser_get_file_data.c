@@ -45,9 +45,9 @@ static void	check_file_data(t_info *info)
 	if (map_info.ea_texture_path == NULL)
 		error_exit("The east texture file does not exist.");
 	if (map_info.floor_color == 0)
-		error_exit("Invalid rgb value.");
+		error_exit("Invalid floor rgb value.");
 	if (map_info.ceiling_color == 0)
-		error_exit("Invalid rgb value.");
+		error_exit("Invalid ceiling rgb value.");
 	if (map_info.map_width == 0)
 		error_exit("Invalid map size.");
 	if (map_info.map_height == 0)
@@ -62,7 +62,6 @@ void	get_file_data(t_info *info, char **tmp_file_data)
 	int		type_count;
 	int		i;
 
-	ft_memset(&info->map_info, 0, sizeof(t_map));
 	check_num_of_type_id(tmp_file_data);
 	type_count = 0;
 	i = -1;

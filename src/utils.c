@@ -31,9 +31,14 @@ void	free_double_pointer(char ***s)
 	그 외의 다른 포인터도 free할 예정 */
 void	free_info(t_info *info)
 {
-	free(info->map_info.no_texture_path);
-	free(info->map_info.so_texture_path);
-	free(info->map_info.we_texture_path);
-	free(info->map_info.ea_texture_path);
-	free(info->map_info.s_texture_path);
+	void	*mlx;
+	void	*win;
+
+	mlx = info->mlx_info.mlx;
+	win = info->mlx_info.mlx_win;
+	mlx_destroy_image(mlx, info->map_info.no_texture_path);
+	mlx_destroy_image(mlx, info->map_info.so_texture_path);
+	mlx_destroy_image(mlx, info->map_info.we_texture_path);
+	mlx_destroy_image(mlx, info->map_info.ea_texture_path);
+	mlx_destroy_window(mlx, win);
 }

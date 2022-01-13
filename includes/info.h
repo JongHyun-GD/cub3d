@@ -15,14 +15,14 @@
 
 # include "map.h"
 # include "mlx_info.h"
-# include "vec2.h"
+# include "player.h"
 # include <stdbool.h>
 
 typedef struct s_info
 {
 	t_mlx_info	mlx_info;
 	t_map		map_info;
-	t_vec		p_pos;
+	t_player	player_info;
 }	t_info;
 
 #endif

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 14:37:46 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:16:09 by dason             #+#    #+#             */
+/*   Updated: 2022/01/13 13:16:10 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# define FLOOR '0'
-# define WALL '1'
-# define SPACE ' '
-# define PLAYER '3'
+# include "vec2.h"
+# include <stdbool.h>
 
-typedef struct s_map
+typedef struct s_player
 {
-	int		texture_width;
-	int		texture_height;
-	void	*no_texture_path;
-	void	*so_texture_path;
-	void	*we_texture_path;
-	void	*ea_texture_path;
-	int		floor_color;
-	int		ceiling_color;
-	int		map_width;
-	int		map_height;
-	char	**map;
-}	t_map;
-
+	t_vec	p_direction;
+	t_vec	p_pos;
+	bool	exist_player;
+}	t_player;
 #endif

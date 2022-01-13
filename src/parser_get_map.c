@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-static void	is_space_nearby(char **map, int x, int y)
+static void	check_closed_map(char **map, int x, int y)
 {
 	int		start_x;
 	int		end_x;
@@ -29,7 +29,7 @@ static void	is_space_nearby(char **map, int x, int y)
 		{
 			if (start_x < 0 || start_y < 0)
 				error_exit("The map is not closed.");
-			if (map[start_y][start_x] == ' ' || \
+			if (map[start_y][start_x] == SPACE || \
 				map[start_y][start_x] == '\0')
 				error_exit("The map is not closed.");
 			start_x++;
@@ -38,21 +38,64 @@ static void	is_space_nearby(char **map, int x, int y)
 	}
 }
 
-static void	check_closed_map(char **map)
+static void	get_player_info(t_info *info, char map_tile, int x, int y)
 {
-	int		i;
-	int		j;
-
-	j = -1;
-	while (map[++j])
+	info->player_info.exist_player = true;
+	info->player_info.p_pos.x = x;
+	info->player_info.p_pos.y = y;
+	info->map_info.map[y][x] = PLAYER;
+	if (map_tile == 'N')
 	{
-		i = -1;
-		while (map[j][++i])
+		info->player_info.p_direction.x = 0;
+		info->player_info.p_direction.y = -1;
+	}
+	else if (map_tile == 'S')
+	{
+		info->player_info.p_direction.x = 0;
+		info->player_info.p_direction.y = 1;
+	}
+	else if (map_tile == 'W')
+	{
+		info->player_info.p_direction.x = -1;
+		info->player_info.p_direction.y = 0;
+	}
+	else if (map_tile == 'E')
+	{
+		info->player_info.p_direction.x = 1;
+		info->player_info.p_direction.y = 0;
+	}
+}
+
+static void	organize_map(t_info *info)
+{
+	char	**map;
+	char	map_tile;
+	int		x;
+	int		y;
+
+	map = info->map_info.map;
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
 		{
-			if (map[j][i] == '0')
-				is_space_nearby(map, i, j);
+			map_tile = map[y][x];
+			if (map_tile == FLOOR)
+				check_closed_map(map, x, y);
+			if (map_tile == 'N' || map_tile == 'S' || \
+				map_tile == 'W' || map_tile == 'E')
+				get_player_info(info, map_tile, x, y);
 		}
 	}
+}
+
+static void	check_map(t_info *info)
+{
+	if (info->player_info.exist_player == false)
+		error_exit("There's no player.");
+	if (info->map_info.map == NULL)
+		error_exit("There's no map.");
 }
 
 void	get_map(t_info *info, char **tmp_file_data)
@@ -78,5 +121,6 @@ void	get_map(t_info *info, char **tmp_file_data)
 		map[m_i++] = ft_strdup(line);
 	}
 	info->map_info.map = map;
-	check_closed_map(info->map_info.map);
+	organize_map(info);
+	check_map(info);
 }

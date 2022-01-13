@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   parser_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 14:37:46 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:57:45 by dason             #+#    #+#             */
+/*   Updated: 2022/01/13 13:57:59 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef PARSER_UTILS_H
+# define PARSER_UTILS_H
 
-# define FLOOR '0'
-# define WALL '1'
-# define SPACE ' '
-# define PLAYER '3'
+# include <stdbool.h>
 
-typedef struct s_map
-{
-	int		texture_width;
-	int		texture_height;
-	void	*no_texture_path;
-	void	*so_texture_path;
-	void	*we_texture_path;
-	void	*ea_texture_path;
-	int		floor_color;
-	int		ceiling_color;
-	int		map_width;
-	int		map_height;
-	char	**map;
-}	t_map;
+void	error_exit(char *error_msg);
+bool	is_type_id(char *type_id);
+int		get_kind_of_type(char *type_id);
 
 #endif

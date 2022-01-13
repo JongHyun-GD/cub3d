@@ -32,20 +32,20 @@
 > - [x] F와 C의 값이 (0 ~ 255)를 벗어났는가?
 >
 > - [x] type data 사이에 탭으로 구분 되어 있는가?
->
-> - [ ] map에 
 
 ### Map
 
-- [ ] map이 닫혀있는가?
+- [x] map이 닫혀있는가?
 
 ---
 # PARSING TODO
 
 - [x] RGB값은 int형 변수에 bit연산해서 넣기
 
-- [ ] char **map에 player는 N, S, W, E가 아닌 숫자로 넣기. ex) 3
+- [x] map_info 구조체에 있는 texture는 path->image로 변환해서 넣기
 
-- [ ] map_info 구조체에 있는 texture는 path->image로 변환해서 넣기
+- [x] char **map에 player는 N, S, W, E가 아닌 숫자로 넣기. ex) 3
+
+- [x] info.p_pos에 플레이어의 현재 위치 받기
 
 - [ ] type_data 추가로 체크 할 케이스가 있는지 생각해보기

@@ -16,6 +16,7 @@
 # include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
 # include "get_next_line.h"
+# include "parser_utils.h"
 # include "info.h"
 # include "map.h"
 # include "utils.h"
@@ -32,9 +33,6 @@
 # define TYPE_C 6
 # define TYPE_MAP 7
 
-/*
-**	MAIN
-*/
 void	parser(int argc, char **argv, t_info *info);
 char	**store_file_data(char *filepath);
 void	get_file_data(t_info *info, char **tmp_file_data);
@@ -44,12 +42,5 @@ void	check_type_data_fc(char **map_type);
 void	get_type_data(t_info *info, char **map_type, int type_id);
 void	get_map_data(t_info *info, char **tmp_file_data);
 void	get_map(t_info *info, char **tmp_file_data);
-
-/*
-**	UTILS
-*/
-void	error_exit(char *error_msg);
-bool	is_type_id(char *type_id);
-int		get_kind_of_type(char *type_id);
 
 #endif

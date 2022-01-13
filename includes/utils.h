@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include "../libft/includes/libft.h"
+# include "mlx.h"
 # include "info.h"
 # include <stdio.h>
 # include <stdlib.h>

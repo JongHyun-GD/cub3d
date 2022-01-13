@@ -32,8 +32,6 @@ void	get_map_data(t_info *info, char **tmp_file_data)
 	char	*line;
 	int		i;
 
-	info->map_info.map_width = 0;
-	info->map_info.map_height = 0;
 	i = -1;
 	while (tmp_file_data[++i])
 	{
