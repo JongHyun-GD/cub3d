@@ -1,15 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   info.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 17:19:11 by dason             #+#    #+#             */
+/*   Updated: 2021/12/27 19:54:29 by dason            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef INFO_H
 # define INFO_H
 
+# include "map.h"
 # include "mlx_info.h"
-# include "vec2.h"
+# include "player.h"
+# include <stdbool.h>
 
 typedef struct s_info
 {
 	t_mlx_info	mlx_info;
-	t_vec		vec;
-	int			map_width;
-	int			map_height;
+	t_map		map_info;
+	t_player	player_info;
 }	t_info;
 
 #endif

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parser_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:19 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:56 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:57:45 by dason             #+#    #+#             */
+/*   Updated: 2022/01/13 13:57:59 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSER_UTILS_H
+# define PARSER_UTILS_H
 
-# include "../mlx/mlx.h"
-# include "../libft/includes/libft.h"
-# include "info.h"
-# include "key.h"
-# include "key_hook.h"
-# include "parser.h"
-# include <stdio.h>
-# include <stdlib.h>
+# include <stdbool.h>
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+void	error_exit(char *error_msg);
+bool	is_type_id(char *type_id);
+int		get_kind_of_type(char *type_id);
 
 #endif

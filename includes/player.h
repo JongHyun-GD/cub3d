@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:19 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:56 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:16:09 by dason             #+#    #+#             */
+/*   Updated: 2022/01/13 13:16:10 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# include "../mlx/mlx.h"
-# include "../libft/includes/libft.h"
-# include "info.h"
-# include "key.h"
-# include "key_hook.h"
-# include "parser.h"
-# include <stdio.h>
-# include <stdlib.h>
+# include "vec2.h"
+# include <stdbool.h>
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
-
+typedef struct s_player
+{
+	t_vec	p_direction;
+	t_vec	p_pos;
+	bool	exist_player;
+}	t_player;
 #endif

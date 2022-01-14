@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:19 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:56 by dason            ###   ########.fr       */
+/*   Created: 2021/12/28 19:27:18 by dason             #+#    #+#             */
+/*   Updated: 2022/01/03 15:03:15 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
+# include "mlx.h"
 # include "info.h"
-# include "key.h"
-# include "key_hook.h"
-# include "parser.h"
 # include <stdio.h>
 # include <stdlib.h>
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+void	free_double_pointer(char ***s);
+void	free_info(t_info *info);
 
 #endif

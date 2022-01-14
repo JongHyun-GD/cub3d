@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:19 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:56 by dason            ###   ########.fr       */
+/*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
+/*   Updated: 2022/01/05 14:37:46 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef MAP_H
+# define MAP_H
 
-# include "../mlx/mlx.h"
-# include "../libft/includes/libft.h"
-# include "info.h"
-# include "key.h"
-# include "key_hook.h"
-# include "parser.h"
-# include <stdio.h>
-# include <stdlib.h>
+# define FLOOR '0'
+# define WALL '1'
+# define SPACE ' '
+# define PLAYER '3'
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+typedef struct s_map
+{
+	int		texture_width;
+	int		texture_height;
+	void	*no_texture;
+	void	*so_texture;
+	void	*we_texture;
+	void	*ea_texture;
+	int		floor_color;
+	int		ceiling_color;
+	int		map_width;
+	int		map_height;
+	char	**map;
+}	t_map;
 
 #endif
