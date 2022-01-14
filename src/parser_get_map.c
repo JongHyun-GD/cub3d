@@ -12,6 +12,7 @@
 
 #include "parser.h"
 
+// TODO: 좀 더 단순화 시킬 수 있는 방법 찾아보기.
 static void	check_closed_map(char **map, int x, int y)
 {
 	int		start_x;

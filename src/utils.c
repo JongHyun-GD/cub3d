@@ -36,9 +36,9 @@ void	free_info(t_info *info)
 
 	mlx = info->mlx_info.mlx;
 	win = info->mlx_info.mlx_win;
-	mlx_destroy_image(mlx, info->map_info.no_texture_path);
-	mlx_destroy_image(mlx, info->map_info.so_texture_path);
-	mlx_destroy_image(mlx, info->map_info.we_texture_path);
-	mlx_destroy_image(mlx, info->map_info.ea_texture_path);
+	mlx_destroy_image(mlx, info->map_info.no_texture);
+	mlx_destroy_image(mlx, info->map_info.so_texture);
+	mlx_destroy_image(mlx, info->map_info.we_texture);
+	mlx_destroy_image(mlx, info->map_info.ea_texture);
 	mlx_destroy_window(mlx, win);
 }

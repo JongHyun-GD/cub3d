@@ -36,13 +36,13 @@ static void	check_file_data(t_info *info)
 	t_map	map_info;
 
 	map_info = info->map_info;
-	if (map_info.no_texture_path == NULL)
+	if (map_info.no_texture == NULL)
 		error_exit("The north texture file does not exist.");
-	if (map_info.so_texture_path == NULL)
+	if (map_info.so_texture == NULL)
 		error_exit("The south texture file does not exist.");
-	if (map_info.we_texture_path == NULL)
+	if (map_info.we_texture == NULL)
 		error_exit("The west texture file does not exist.");
-	if (map_info.ea_texture_path == NULL)
+	if (map_info.ea_texture == NULL)
 		error_exit("The east texture file does not exist.");
 	if (map_info.floor_color == 0)
 		error_exit("Invalid floor rgb value.");

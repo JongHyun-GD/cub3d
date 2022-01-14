@@ -21,10 +21,10 @@ void	print_info(t_info *info)
 	printf("p_pos.y: %f\n", info->player_info.p_pos.y);
 	printf("p_direction.x: %f\n", info->player_info.p_direction.x);
 	printf("p_direction.y: %f\n", info->player_info.p_direction.y);
-	printf("no_texture_path: %p\n", info->map_info.no_texture_path);
-	printf("so_texture_path: %p\n", info->map_info.so_texture_path);
-	printf("we_texture_path: %p\n", info->map_info.we_texture_path);
-	printf("ea_texture_path: %p\n", info->map_info.ea_texture_path);
+	printf("no_texture: %p\n", info->map_info.no_texture);
+	printf("so_texture: %p\n", info->map_info.so_texture);
+	printf("we_texture: %p\n", info->map_info.we_texture);
+	printf("ea_texture: %p\n", info->map_info.ea_texture);
 	printf("floor_color: %d\n", info->map_info.floor_color);
 	printf("ceiling_color: %d\n", info->map_info.ceiling_color);
 	printf("map_width: %d\n", info->map_info.map_width);
@@ -49,7 +49,7 @@ static void	check_param(int argc, char *filepath)
 		error_exit("It's an incorrrect extension.");
 }
 
-void	parser(int argc, char **argv, t_info *info)
+void	parse_map(int argc, char **argv, t_info *info)
 {
 	char	**tmp_file_data;
 

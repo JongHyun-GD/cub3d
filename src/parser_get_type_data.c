@@ -23,13 +23,13 @@ static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
 	if (texture == NULL)
 		error_exit("Map file does not exist.");
 	if (type_id == TYPE_NO)
-		info->map_info.no_texture_path = texture;
+		info->map_info.no_texture = texture;
 	if (type_id == TYPE_SO)
-		info->map_info.so_texture_path = texture;
+		info->map_info.so_texture = texture;
 	if (type_id == TYPE_WE)
-		info->map_info.we_texture_path = texture;
+		info->map_info.we_texture = texture;
 	if (type_id == TYPE_EA)
-		info->map_info.ea_texture_path = texture;
+		info->map_info.ea_texture = texture;
 }
 
 static int	get_num_of_type_data(char **s)

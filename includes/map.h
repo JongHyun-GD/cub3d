@@ -22,10 +22,10 @@ typedef struct s_map
 {
 	int		texture_width;
 	int		texture_height;
-	void	*no_texture_path;
-	void	*so_texture_path;
-	void	*we_texture_path;
-	void	*ea_texture_path;
+	void	*no_texture;
+	void	*so_texture;
+	void	*we_texture;
+	void	*ea_texture;
 	int		floor_color;
 	int		ceiling_color;
 	int		map_width;

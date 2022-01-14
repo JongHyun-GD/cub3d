@@ -33,7 +33,7 @@
 # define TYPE_C 6
 # define TYPE_MAP 7
 
-void	parser(int argc, char **argv, t_info *info);
+void	parse_map(int argc, char **argv, t_info *info);
 char	**store_file_data(char *filepath);
 void	get_file_data(t_info *info, char **tmp_file_data);
 void	check_type_data(char **map_type, int type_id);
