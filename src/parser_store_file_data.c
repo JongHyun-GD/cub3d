@@ -27,6 +27,7 @@ static int	get_len_of_line(char *filepath)
 		len++;
 		free(line);
 	}
+	len++;
 	free(line);
 	close(fd);
 	return (len);
@@ -52,6 +53,8 @@ char	**store_file_data(char *filepath)
 			continue ;
 		tmp_file_data[i++] = line;
 	}
+	if (*line != '\0')
+		tmp_file_data[i] = line;
 	close(fd);
 	return (tmp_file_data);
 }

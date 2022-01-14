@@ -13,13 +13,15 @@
 #include "parser.h"
 
 // TODO: 좀 더 단순화 시킬 수 있는 방법 찾아보기.
-static void	check_closed_map(char **map, int x, int y)
+static void	check_closed_map(t_info *info, int x, int y)
 {
+	char	**map;
 	int		start_x;
 	int		end_x;
 	int		start_y;
 	int		end_y;
 
+	map = info->map_info.map;
 	start_y = y - 1;
 	end_y = y + 1;
 	while (start_y <= end_y)
@@ -28,7 +30,8 @@ static void	check_closed_map(char **map, int x, int y)
 		end_x = x + 1;
 		while (start_x <= end_x)
 		{
-			if (start_x < 0 || start_y < 0)
+			if (start_x < 0 || start_y < 0 || \
+				info->map_info.map_height <= start_y)
 				error_exit("The map is not closed.");
 			if (map[start_y][start_x] == SPACE || \
 				map[start_y][start_x] == '\0')
@@ -83,7 +86,7 @@ static void	organize_map(t_info *info)
 		{
 			map_tile = map[y][x];
 			if (map_tile == FLOOR)
-				check_closed_map(map, x, y);
+				check_closed_map(info, x, y);
 			if (map_tile == 'N' || map_tile == 'S' || \
 				map_tile == 'W' || map_tile == 'E')
 				get_player_info(info, map_tile, x, y);

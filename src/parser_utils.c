@@ -34,12 +34,6 @@ bool	is_type_id(char *type_id)
 		return (true);
 	if (ft_strncmp("C", type_id, 2) == 0)
 		return (true);
-	if (ft_strncmp("1", type_id, 1) == 0)
-		return (true);
-	if (ft_strncmp(" ", type_id, 1) == 0)
-		return (true);
-	if (ft_strncmp("0", type_id, 1) == 0)
-		return (true);
 	return (false);
 }
 
