@@ -17,5 +17,7 @@ int	main(int argc, char **argv)
 			WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	mlx_key_hook(info.mlx_info.mlx_win, key_hook, &info);
 	mlx_hook(info.mlx_info.mlx_win, 17, 0, exit_game, &info);
+	render(&info);
+	//mlx_loop_hook(info.mlx_info.mlx_win, render, &info);
 	mlx_loop(info.mlx_info.mlx);
 }

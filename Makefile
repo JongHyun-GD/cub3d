@@ -25,7 +25,10 @@ C_FILES		= get_next_line.c					\
 			  parser_store_file_data.c			\
 			  parser_utils.c					\
 			  parser.c							\
-			  utils.c
+			  utils.c							\
+			  raycast.c							\
+			  render.c							\
+			  vec2.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(C_FILES))
 OBJS		= $(SRCS:.c=.o)

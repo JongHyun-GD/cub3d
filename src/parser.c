@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 18:21:25 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/17 09:36:04 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	print_info(t_info *info)
 	int		i;
 
 	printf("### print_info ###\n");
-	printf("p_pos.x: %f\n", info->player_info.p_pos.x);
-	printf("p_pos.y: %f\n", info->player_info.p_pos.y);
-	printf("p_direction.x: %f\n", info->player_info.p_direction.x);
-	printf("p_direction.y: %f\n", info->player_info.p_direction.y);
+	printf("p_pos: (%f, %f)\n", info->p_pos.x, info->p_pos.y);
+	printf("p_direction.x: (%f, %f)\n", info->p_dir.x, info->p_dir.y);
 	printf("no_texture: %p\n", info->map_info.no_texture);
 	printf("so_texture: %p\n", info->map_info.so_texture);
 	printf("we_texture: %p\n", info->map_info.we_texture);
@@ -54,7 +52,6 @@ void	parse_map(int argc, char **argv, t_info *info)
 	char	**tmp_file_data;
 
 	ft_memset(&info->map_info, 0, sizeof(t_map));
-	ft_memset(&info->player_info, 0, sizeof(t_player));
 	check_param(argc, argv[1]);
 	tmp_file_data = store_file_data(argv[1]);
 	get_file_data(info, tmp_file_data);
