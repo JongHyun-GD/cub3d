@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_info.h                                         :+:      :+:    :+:   */
+/*   parser_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:41 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:58 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:57:45 by dason             #+#    #+#             */
+/*   Updated: 2022/01/13 13:57:59 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INFO_H
-# define MLX_INFO_H
+#ifndef PARSER_UTILS_H
+# define PARSER_UTILS_H
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# include <stdbool.h>
 
-typedef struct s_mlx_info
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx_info;
+void	error_exit(char *error_msg);
+bool	is_type_id(char *type_id);
+int		get_kind_of_type(char *type_id);
 
 #endif

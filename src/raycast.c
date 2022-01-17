@@ -6,39 +6,11 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:39:45 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/04 22:01:50 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/17 14:19:15 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
-
-int worldMap[24][24]=
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
 
 double	get_perp_wall_dist(int side, t_vec2int map_pos, t_vec2 pos, t_vec2int step, t_vec2 dir)
 {
@@ -51,7 +23,7 @@ double	get_perp_wall_dist(int side, t_vec2int map_pos, t_vec2 pos, t_vec2int ste
 	return (perp_wall_dist);
 }
 
-int	*make_line(double dist, int side, t_vec2int map_pos)
+int	*make_line(t_info *info, double dist, int side, t_vec2int map_pos)
 {
 	int	line_height;
 	int	draw_start;
@@ -68,13 +40,9 @@ int	*make_line(double dist, int side, t_vec2int map_pos)
 	y = -1;
 	while (++y < WIN_HEIGHT)
 	{
-		switch (worldMap[map_pos.x][map_pos.y])
+		if (info->map_info.map[map_pos.y][map_pos.x] == WALL)
 		{
-		case 1: color = RGB_WHITE; break;
-		case 2: color = RGB_BLUE; break;
-		case 3: color = RGB_GREEN; break;
-		case 4: color = RGB_RED; break;
-		default: color = RGB_BLACK; break;
+			color = RGB_WHITE;
 		}
 		side = 0;
 		if (side == 1)
@@ -139,12 +107,12 @@ int	*raycast(t_info *info, t_vec2 dir)
 			map_pos.y += step.y;
 			side = 1;
 		}
-		if (worldMap[map_pos.x][map_pos.y] > 0)
+		if (info->map_info.map[map_pos.y][map_pos.x] != FLOOR)
 			hit = 1;
 	}
 
 	// Get dist and draw
 	dist = get_perp_wall_dist(side, map_pos, info->p_pos, step, dir);
-	return (make_line(dist, side, map_pos));
+	return (make_line(info, dist, side, map_pos));
 }
 

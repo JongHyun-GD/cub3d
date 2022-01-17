@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   info.h                                             :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 17:19:11 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 09:24:18 by hyun             ###   ########.fr       */
+/*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
+/*   Updated: 2022/01/17 09:45:59 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INFO_H
-# define INFO_H
+#ifndef MAP_H
+# define MAP_H
 
-# include "map.h"
-# include "mlx_info.h"
-# include "player.h"
-# include <stdbool.h>
+# define FLOOR '0'
+# define WALL '1'
+# define SPACE ' '
+# define PLAYER '3'
 
-typedef struct s_info
+typedef struct s_map
 {
-	t_mlx_info	mlx_info;
-	t_vec2		p_pos;
-	t_vec2		p_dir;
-	t_vec2		p_fov;
-	int			map_width;
-	int			map_height;
-	t_map		map_info;
-}	t_info;
+	int		texture_width;
+	int		texture_height;
+	void	*no_texture;
+	void	*so_texture;
+	void	*we_texture;
+	void	*ea_texture;
+	int		floor_color;
+	int		ceiling_color;
+	int		map_width;
+	int		map_height;
+	char	**map;
+}	t_map;
 
 #endif

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_info.h                                         :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:41 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:58 by dason            ###   ########.fr       */
+/*   Created: 2021/12/28 19:27:18 by dason             #+#    #+#             */
+/*   Updated: 2022/01/03 15:03:15 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INFO_H
-# define MLX_INFO_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# include "../libft/includes/libft.h"
+# include "mlx.h"
+# include "info.h"
+# include <stdio.h>
+# include <stdlib.h>
 
-typedef struct s_mlx_info
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx_info;
+void	free_double_pointer(char ***s);
+void	free_info(t_info *info);
 
 #endif

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_info.h                                         :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:41 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:58 by dason            ###   ########.fr       */
+/*   Created: 2022/01/13 13:16:09 by dason             #+#    #+#             */
+/*   Updated: 2022/01/17 09:22:33 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INFO_H
-# define MLX_INFO_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# include "vec2.h"
+# include <stdbool.h>
 
-typedef struct s_mlx_info
+typedef struct s_player
 {
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx_info;
-
+	t_vec2	p_direction;
+	t_vec2	p_pos;
+	bool	exist_player;
+}	t_player;
 #endif

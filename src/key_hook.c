@@ -19,8 +19,8 @@ int	key_hook(int keycode, t_info *info)
 		info->p_pos = v2_minus(info->p_pos, info->p_dir);
 		render(info);
 	}
-	if (keycode == KEY_A) {
-		printf("Key A pressed\n");
+	if (keycode == KEY_D) {
+		printf("Key D pressed\n");
 		old_dir = info->p_dir;
 		old_fov = info->p_fov;
 		info->p_dir.x = old_dir.x * cos(rot_speed) - old_dir.y * sin(rot_speed);
@@ -29,8 +29,8 @@ int	key_hook(int keycode, t_info *info)
     	info->p_fov.y = old_fov.x * sin(rot_speed) + old_fov.y * cos(rot_speed);
 		render(info);
 	}
-	if (keycode == KEY_D) {
-		printf("Key D pressed\n");
+	if (keycode == KEY_A) {
+		printf("Key A pressed\n");
 		old_dir = info->p_dir;
 		old_fov = info->p_fov;
 		info->p_dir.x = old_dir.x * cos(-rot_speed) - old_dir.y * sin(-rot_speed);
