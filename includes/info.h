@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:19:11 by dason             #+#    #+#             */
-/*   Updated: 2021/12/27 19:54:29 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/17 09:24:18 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 typedef struct s_info
 {
 	t_mlx_info	mlx_info;
+	t_vec2		p_pos;
+	t_vec2		p_dir;
+	t_vec2		p_fov;
+	int			map_width;
+	int			map_height;
 	t_map		map_info;
-	t_player	player_info;
 }	t_info;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_get_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:10 by dason             #+#    #+#             */
-/*   Updated: 2022/01/11 22:18:35 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/17 14:28:24 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,42 +39,45 @@ static void	check_closed_map(char **map, int x, int y)
 	}
 }
 
-static void	get_player_info(t_info *info, char map_tile, int x, int y)
+static void	set_player_info(t_info *info, char map_tile, int x, int y)
 {
-	info->player_info.exist_player = true;
-	info->player_info.p_pos.x = x;
-	info->player_info.p_pos.y = y;
+	info->p_fov.x = 0.66;
+	info->p_fov.y = 0;
+	info->p_pos.x = x;
+	info->p_pos.y = y;
 	info->map_info.map[y][x] = PLAYER;
 	if (map_tile == 'N')
 	{
-		info->player_info.p_direction.x = 0;
-		info->player_info.p_direction.y = -1;
+		info->p_dir.x = 0;
+		info->p_dir.y = -1;
 	}
 	else if (map_tile == 'S')
 	{
-		info->player_info.p_direction.x = 0;
-		info->player_info.p_direction.y = 1;
+		info->p_dir.x = 0;
+		info->p_dir.y = 1;
 	}
 	else if (map_tile == 'W')
 	{
-		info->player_info.p_direction.x = -1;
-		info->player_info.p_direction.y = 0;
+		info->p_dir.x = -1;
+		info->p_dir.y = 0;
 	}
 	else if (map_tile == 'E')
 	{
-		info->player_info.p_direction.x = 1;
-		info->player_info.p_direction.y = 0;
+		info->p_dir.x = 1;
+		info->p_dir.y = 0;
 	}
 }
 
-static void	organize_map(t_info *info)
+static bool	organize_map(t_info *info)
 {
 	char	**map;
 	char	map_tile;
 	int		x;
 	int		y;
+	bool	has_player;
 
 	map = info->map_info.map;
+	has_player = false;
 	y = -1;
 	while (map[++y])
 	{
@@ -86,17 +89,13 @@ static void	organize_map(t_info *info)
 				check_closed_map(map, x, y);
 			if (map_tile == 'N' || map_tile == 'S' || \
 				map_tile == 'W' || map_tile == 'E')
-				get_player_info(info, map_tile, x, y);
+			{
+				set_player_info(info, map_tile, x, y);
+				has_player = true;
+			}
 		}
 	}
-}
-
-static void	check_map(t_info *info)
-{
-	if (info->player_info.exist_player == false)
-		error_exit("There's no player.");
-	if (info->map_info.map == NULL)
-		error_exit("There's no map.");
+	return (has_player);
 }
 
 void	get_map(t_info *info, char **tmp_file_data)
@@ -122,6 +121,7 @@ void	get_map(t_info *info, char **tmp_file_data)
 		map[m_i++] = ft_strdup(line);
 	}
 	info->map_info.map = map;
-	organize_map(info);
-	check_map(info);
+	if (organize_map(info) == false) {
+		error_exit("[Error] Invalid map\n");
+	}
 }

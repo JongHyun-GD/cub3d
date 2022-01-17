@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_info.h                                         :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 13:57:41 by dason             #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:58 by dason            ###   ########.fr       */
+/*   Created: 2021/12/27 17:24:48 by hyun              #+#    #+#             */
+/*   Updated: 2022/01/04 22:01:48 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INFO_H
-# define MLX_INFO_H
+#ifndef RENDER_H
+# define RENDER_H
 
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# include "mlx.h"
+# include "info.h"
+# include "raycast.h"
+# include "img.h"
 
-typedef struct s_mlx_info
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx_info;
+int	render(t_info *info);
 
 #endif

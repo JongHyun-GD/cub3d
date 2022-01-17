@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 18:20:28 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/17 09:38:34 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 # include "get_next_line.h"
 # include "parser_utils.h"
 # include "info.h"
-# include "map.h"
 # include "utils.h"
-# include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
 
