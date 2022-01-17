@@ -7,7 +7,9 @@
 typedef struct s_info
 {
 	t_mlx_info	mlx_info;
-	t_vec		vec;
+	t_vec2		p_pos;
+	t_vec2		p_dir;
+	t_vec2		p_fov;
 	int			map_width;
 	int			map_height;
 }	t_info;

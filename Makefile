@@ -14,6 +14,9 @@ NAME		= cub3d
 SRC_DIR		= ./src/
 C_FILES		= main.c		\
 			  parser.c		\
+			  render.c		\
+			  raycast.c		\
+			  vec2.c		\
 			  key_hook.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(C_FILES))

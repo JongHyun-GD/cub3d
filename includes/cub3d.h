@@ -7,11 +7,8 @@
 # include "key.h"
 # include "key_hook.h"
 # include "parser.h"
+# include "render.h"
 # include <stdio.h>
 # include <stdlib.h>
-
-# define WIN_TITLE "cub3d"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
 
 #endif
