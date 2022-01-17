@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:57 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/17 14:25:48 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/17 14:40:25 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	render(t_info *info)
 	while (++w < WIN_WIDTH)
 	{
 		dir = cal_dir(info, w);
-		printf("dir= %f, %f\n", dir.y, dir.x);
 		line = raycast(info, dir);
 		draw_line(img, line, w);
 	}
