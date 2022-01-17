@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:39:45 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/17 14:19:15 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/17 15:00:24 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ int	*make_line(t_info *info, double dist, int side, t_vec2int map_pos)
 		{
 			color = RGB_WHITE;
 		}
-		side = 0;
 		if (side == 1)
 		{
 			color /= 2;
-			printf("side!\n");
 		}
 		if (y >= draw_start && y <= draw_end)
 			line[y] = color;
