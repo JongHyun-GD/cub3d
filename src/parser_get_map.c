@@ -47,7 +47,7 @@ static void	get_player_info(t_info *info, char map_tile, int x, int y)
 	info->player_info.exist_player = true;
 	info->player_info.p_pos.x = x;
 	info->player_info.p_pos.y = y;
-	info->map_info.map[y][x] = PLAYER;
+	info->map_info.map[y][x] = FLOOR;
 	if (map_tile == 'N')
 	{
 		info->player_info.p_direction.x = 0;
