@@ -48,7 +48,7 @@ static void	set_player_info(t_info *info, char map_tile, int x, int y)
 	info->p_fov.y = 0;
 	info->p_pos.x = x;
 	info->p_pos.y = y;
-	info->map_info.map[y][x] = PLAYER;
+	info->map_info.map[y][x] = FLOOR;
 	if (map_tile == 'N')
 	{
 		info->p_dir.x = 0;
