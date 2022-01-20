@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 09:38:34 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/19 21:38:47 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "parser_utils.h"
 # include "info.h"
 # include "utils.h"
+# include "img.h"
 # include <stdio.h>
 # include <fcntl.h>
 

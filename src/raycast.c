@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:39:45 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/17 15:00:24 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/20 18:31:26 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	get_perp_wall_dist(int side, t_vec2int map_pos, t_vec2 pos, t_vec2int ste
 	return (perp_wall_dist);
 }
 
-int	*make_line(t_info *info, double dist, int side, t_vec2int map_pos)
+int	*make_line(t_info *info, double dist, int side, t_vec2 dir)
 {
 	int	line_height;
 	int	draw_start;
@@ -31,27 +31,51 @@ int	*make_line(t_info *info, double dist, int side, t_vec2int map_pos)
 	int	y;
 	int color;
 	int	*line;
+	double step;
+	double tex_pos;
+	t_vec2 wall;
+	t_vec2int tex;
 
 	line = (int *)malloc(WIN_HEIGHT * sizeof(int));
 	line_height = (int)(WIN_HEIGHT / dist);
 	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
 	if (draw_start < 0) draw_start = 0;
 	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	if (side == 0)
+		wall.x = info->p_pos.y + dist * dir.y;
+	else
+		wall.x = info->p_pos.x + dist * dir.x;
+	wall.x -= floor(wall.x);
+	tex.x = (int)(wall.x * TEX_WIDTH);
+	if (side == 0 && dir.x > 0) tex.x = TEX_WIDTH - tex.x - 1;
+	if (side == 1 && dir.y < 0) tex.x = TEX_WIDTH - tex.x - 1;
+
+	step = 1.0 * TEX_HEIGHT / (double)line_height;
+	tex_pos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
+
 	y = -1;
 	while (++y < WIN_HEIGHT)
 	{
-		if (info->map_info.map[map_pos.y][map_pos.x] == WALL)
-		{
-			color = RGB_WHITE;
-		}
-		if (side == 1)
-		{
-			color /= 2;
-		}
-		if (y >= draw_start && y <= draw_end)
-			line[y] = color;
+		if (y < draw_start) line[y] = RGB_BLACK;
+		else if (y > draw_end) line[y] = RGB_BLACK;
 		else
-			line[y] = RGB_BLACK;
+		{
+			tex.y = (int)tex_pos & (TEX_HEIGHT - 1);
+			tex_pos += step;
+			if (side == 1 && dir.y <= 0) {
+				color = info->map_info.ea_texture[tex.y * TEX_WIDTH + tex.x];
+			}
+			else if (side == 1 && dir.y > 0) {
+				color = info->map_info.we_texture[tex.y * TEX_WIDTH + tex.x];
+			}
+			else if (side == 0 && dir.x >= 0) {
+				color = info->map_info.no_texture[tex.y * TEX_WIDTH + tex.x];
+			}
+			else if (side == 0 && dir.x < 0) {
+				color = info->map_info.so_texture[tex.y * TEX_WIDTH + tex.x];
+			}
+			line[y] = color;
+		}
 	}
 	return (line);
 }
@@ -111,6 +135,6 @@ int	*raycast(t_info *info, t_vec2 dir)
 
 	// Get dist and draw
 	dist = get_perp_wall_dist(side, map_pos, info->p_pos, step, dir);
-	return (make_line(info, dist, side, map_pos));
+	return (make_line(info, dist, side, dir));
 }
 
