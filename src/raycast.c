@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:39:45 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/20 18:31:26 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/20 18:56:41 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	*make_line(t_info *info, double dist, int side, t_vec2 dir)
 	y = -1;
 	while (++y < WIN_HEIGHT)
 	{
-		if (y < draw_start) line[y] = RGB_BLACK;
-		else if (y > draw_end) line[y] = RGB_BLACK;
+		if (y < draw_start) line[y] = info->map_info.ceiling_color;
+		else if (y > draw_end) line[y] = info->map_info.floor_color;
 		else
 		{
 			tex.y = (int)tex_pos & (TEX_HEIGHT - 1);
