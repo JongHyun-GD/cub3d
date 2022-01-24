@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:57 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/19 21:45:01 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/24 20:44:59 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_vec2	cal_dir(t_info *info, int camera_step)
 	t_vec2	left_corner;
 
 	cam_x = 2 * (double)camera_step / (double)WIN_WIDTH;
-
 	left_corner = v2_minus(info->p_dir, info->p_fov);
 	dir = v2_plus(left_corner, v2_scala(cam_x, info->p_fov));
 	return (dir);
@@ -38,8 +37,6 @@ int	draw_line(t_img *img, int *line, int x)
 	return (0);
 }
 
-
-
 int	render(t_info *info)
 {
 	int		w;
@@ -49,7 +46,8 @@ int	render(t_info *info)
 
 	img = (t_img *)malloc(sizeof(t_img));
 	img->img_ptr = mlx_new_image(info->mlx_info.mlx, WIN_WIDTH, WIN_HEIGHT);
-	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_l, &img->endian);
+	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, \
+		&img->size_l, &img->endian);
 	w = -1;
 	while (++w < WIN_WIDTH)
 	{
@@ -57,6 +55,7 @@ int	render(t_info *info)
 		line = raycast(info, dir);
 		draw_line(img, line, w);
 	}
-	mlx_put_image_to_window(info->mlx_info.mlx, info->mlx_info.mlx_win, img->img_ptr, 0, 0);
+	mlx_put_image_to_window(info->mlx_info.mlx, info->mlx_info.mlx_win, \
+		img->img_ptr, 0, 0);
 	return (0);
 }

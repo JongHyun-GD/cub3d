@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/24 20:29:21 by hyun              #+#    #+#             */
+/*   Updated: 2022/01/24 20:29:23 by hyun             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include <mlx.h>
 
@@ -18,6 +30,5 @@ int	main(int argc, char **argv)
 	mlx_key_hook(info.mlx_info.mlx_win, key_hook, &info);
 	mlx_hook(info.mlx_info.mlx_win, 17, 0, exit_game, &info);
 	render(&info);
-	//mlx_loop_hook(info.mlx_info.mlx_win, render, &info);
 	mlx_loop(info.mlx_info.mlx);
 }

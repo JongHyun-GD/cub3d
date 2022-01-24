@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/19 21:43:47 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/24 20:30:42 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
 	if (img.img_ptr == NULL)
 		error_exit("Map file does not exist.");
 	if (type_id == TYPE_NO)
-		info->map_info.no_texture = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
+		info->map_info.no_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_SO)
-		info->map_info.so_texture = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
+		info->map_info.so_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_WE)
-		info->map_info.we_texture = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
+		info->map_info.we_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_EA)
-		info->map_info.ea_texture = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
+		info->map_info.ea_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 }
 
 static int	get_num_of_type_data(char **s)

@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:10 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 14:28:24 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/20 21:49:13 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,29 @@ static void	set_player_info(t_info *info, char map_tile, int x, int y)
 	{
 		info->p_dir.x = 0;
 		info->p_dir.y = -1;
+		info->p_right.x = 1;
+		info->p_right.y = 0;
 	}
 	else if (map_tile == 'S')
 	{
 		info->p_dir.x = 0;
 		info->p_dir.y = 1;
+		info->p_right.x = -1;
+		info->p_right.y = 0;
 	}
 	else if (map_tile == 'W')
 	{
 		info->p_dir.x = -1;
 		info->p_dir.y = 0;
+		info->p_right.x = 0;
+		info->p_right.y = -1;
 	}
 	else if (map_tile == 'E')
 	{
 		info->p_dir.x = 1;
 		info->p_dir.y = 0;
+		info->p_right.x = 0;
+		info->p_right.y = 1;
 	}
 }
 
@@ -107,6 +115,7 @@ void	get_map(t_info *info, char **tmp_file_data)
 
 	m_i = 0;
 	map = (char **)ft_calloc(info->map_info.map_height + 1, sizeof(char *));
+	print_info(info);
 	if (!map)
 		error_exit("Malloc allocation failed.");
 	i = -1;
