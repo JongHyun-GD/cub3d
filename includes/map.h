@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:58:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 09:45:59 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/19 21:27:26 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ typedef struct s_map
 {
 	int		texture_width;
 	int		texture_height;
-	void	*no_texture;
-	void	*so_texture;
-	void	*we_texture;
-	void	*ea_texture;
+	int		*no_texture;
+	int		*so_texture;
+	int		*we_texture;
+	int		*ea_texture;
 	int		floor_color;
 	int		ceiling_color;
 	int		map_width;

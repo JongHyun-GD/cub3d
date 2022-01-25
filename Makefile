@@ -16,6 +16,7 @@ SRC_DIR		= ./src/
 C_FILES		= get_next_line.c					\
 			  get_next_line_utils.c				\
 			  key_hook.c						\
+			  key_hook2.c						\
 			  main.c							\
 			  parser_check_type_data.c			\
 			  parser_get_file_data.c			\
@@ -27,6 +28,7 @@ C_FILES		= get_next_line.c					\
 			  parser.c							\
 			  utils.c							\
 			  raycast.c							\
+			  raycast_utils.c					\
 			  render.c							\
 			  vec2.c
 

@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:59 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 09:38:34 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/20 21:49:13 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "parser_utils.h"
 # include "info.h"
 # include "utils.h"
+# include "img.h"
 # include <stdio.h>
 # include <fcntl.h>
 
@@ -40,5 +41,6 @@ void	check_type_data_fc(char **map_type);
 void	get_type_data(t_info *info, char **map_type, int type_id);
 void	get_map_data(t_info *info, char **tmp_file_data);
 void	get_map(t_info *info, char **tmp_file_data);
+void	print_info(t_info *info);
 
 #endif
