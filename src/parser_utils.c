@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:24:58 by dason             #+#    #+#             */
-/*   Updated: 2022/01/03 15:08:22 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/25 16:59:13 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	error_exit(char *error_msg)
 {
-	ft_putendl_fd("### ERROR ###", 2);
-	ft_putstr_fd("Message: ", 2);
+	ft_putstr_fd("Error Message: ", 2);
 	ft_putstr_fd(error_msg, 2);
 	exit(1);
 }

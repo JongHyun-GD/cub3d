@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_get_type_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:03:30 by dason             #+#    #+#             */
-/*   Updated: 2022/01/05 17:58:12 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/24 20:30:42 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,25 @@
 static void	get_type_data_texture(t_info *info, char **map_type, int type_id)
 {
 	char	*filepath;
-	void	*texture;
+	t_img	img;
 
 	filepath = map_type[1];
-	texture = mlx_xpm_file_to_image(info->mlx_info.mlx, filepath, \
+	img.img_ptr = mlx_xpm_file_to_image(info->mlx_info.mlx, filepath, \
 		&info->map_info.texture_width, &info->map_info.texture_height);
-	if (texture == NULL)
+	if (img.img_ptr == NULL)
 		error_exit("Map file does not exist.");
 	if (type_id == TYPE_NO)
-		info->map_info.no_texture = texture;
+		info->map_info.no_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_SO)
-		info->map_info.so_texture = texture;
+		info->map_info.so_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_WE)
-		info->map_info.we_texture = texture;
+		info->map_info.we_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 	if (type_id == TYPE_EA)
-		info->map_info.ea_texture = texture;
+		info->map_info.ea_texture = (int *)mlx_get_data_addr \
+			(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 }
 
 static int	get_num_of_type_data(char **s)

@@ -16,7 +16,9 @@ SRC_DIR		= ./src/
 C_FILES		= get_next_line.c					\
 			  get_next_line_utils.c				\
 			  key_hook.c						\
+			  key_hook2.c						\
 			  main.c							\
+			  parse_map.c						\
 			  parser_check_type_data.c			\
 			  parser_get_file_data.c			\
 			  parser_get_map_data.c				\
@@ -24,10 +26,10 @@ C_FILES		= get_next_line.c					\
 			  parser_get_type_data.c			\
 			  parser_store_file_data.c			\
 			  parser_utils.c					\
-			  parser.c							\
-			  utils.c							\
+			  raycast_utils.c					\
 			  raycast.c							\
 			  render.c							\
+			  utils.c							\
 			  vec2.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(C_FILES))

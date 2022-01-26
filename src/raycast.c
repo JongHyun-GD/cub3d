@@ -6,113 +6,90 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:39:45 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/17 14:19:15 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/24 23:57:27 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-double	get_perp_wall_dist(int side, t_vec2int map_pos, t_vec2 pos, t_vec2int step, t_vec2 dir)
+int	*make_line(t_info *info, double dist, int side, t_vec2 dir)
 {
-	double	perp_wall_dist;
-
-	if (side == 0)
-		perp_wall_dist = (map_pos.x - pos.x + (1 - step.x) / 2) / dir.x;
-	else
-		perp_wall_dist = (map_pos.y - pos.y + (1 - step.y) / 2) / dir.y;
-	return (perp_wall_dist);
-}
-
-int	*make_line(t_info *info, double dist, int side, t_vec2int map_pos)
-{
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
-	int	y;
-	int color;
-	int	*line;
+	t_tex_vars	vars;
+	int			*line;
 
 	line = (int *)malloc(WIN_HEIGHT * sizeof(int));
-	line_height = (int)(WIN_HEIGHT / dist);
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_start < 0) draw_start = 0;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
-	y = -1;
-	while (++y < WIN_HEIGHT)
+	vars.line_height = (int)(WIN_HEIGHT / dist);
+	if (side == 0)
+		vars.wall.x = info->p_pos.y + dist * dir.y;
+	else
+		vars.wall.x = info->p_pos.x + dist * dir.x;
+	set_tex_vars(&vars, side, dir);
+	while (++vars.y < WIN_HEIGHT)
 	{
-		if (info->map_info.map[map_pos.y][map_pos.x] == WALL)
-		{
-			color = RGB_WHITE;
-		}
-		side = 0;
-		if (side == 1)
-		{
-			color /= 2;
-			printf("side!\n");
-		}
-		if (y >= draw_start && y <= draw_end)
-			line[y] = color;
+		if (vars.y < vars.draw_start)
+			line[vars.y] = info->map_info.ceiling_color;
+		else if (vars.y > vars.draw_end)
+			line[vars.y] = info->map_info.floor_color;
 		else
-			line[y] = RGB_BLACK;
+		{
+			cal_tex_color(&vars, info, side, dir);
+			line[vars.y] = vars.color;
+		}
 	}
 	return (line);
 }
 
-int	*raycast(t_info *info, t_vec2 dir)
+int	move_ray_x(t_vec2 *side_dist, t_vec2int *map_pos, \
+	t_vec2 *delta_dist, t_vec2int *step)
 {
-	t_vec2int	map_pos;
-	t_vec2int	step;
-	t_vec2		side_dist;
-	t_vec2		delta_dist;
-	int			hit;
-	int			side;
-	double		dist;
+	side_dist->x += delta_dist->x;
+	map_pos->x += step->x;
+	return (0);
+}
 
+int	move_ray_y(t_vec2 *side_dist, t_vec2int *map_pos, \
+	t_vec2 *delta_dist, t_vec2int *step)
+{
+	side_dist->y += delta_dist->y;
+	map_pos->y += step->y;
+	return (1);
+}
+
+t_raycast_result	find_hit_dist(t_info *info, t_vec2 dir, \
+	t_vec2 side_dist, t_vec2int step)
+{
+	t_vec2int			map_pos;
+	t_vec2				delta_dist;
+	t_raycast_result	result;
+
+	result.side = 0;
 	map_pos.x = (int)info->p_pos.x;
 	map_pos.y = (int)info->p_pos.y;
 	delta_dist.x = fabs(1 / dir.x);
 	delta_dist.y = fabs(1 / dir.y);
-	if (dir.x < 0)
-	{
-		step.x = -1;
-		side_dist.x = (info->p_pos.x - map_pos.x) * delta_dist.x;
-	}
-	else
-	{
-		step.x = 1;
-		side_dist.x = (map_pos.x + 1.0 - info->p_pos.x) * delta_dist.x;
-	}
-	if (dir.y < 0)
-	{
-		step.y = -1;
-		side_dist.y = (info->p_pos.y - map_pos.y) * delta_dist.y;
-	}
-	else
-	{
-		step.y = 1;
-		side_dist.y = (map_pos.y + 1.0 - info->p_pos.y) * delta_dist.y;
-	}
-	hit = 0;
-	while (hit == 0)
+	while (true)
 	{
 		if (side_dist.x < side_dist.y)
-		{
-			side_dist.x += delta_dist.x;
-			map_pos.x += step.x;
-			side = 0;
-		}
+			result.side = move_ray_x(&side_dist, &map_pos, &delta_dist, &step);
 		else
-		{
-			side_dist.y += delta_dist.y;
-			map_pos.y += step.y;
-			side = 1;
-		}
+			result.side = move_ray_y(&side_dist, &map_pos, &delta_dist, &step);
 		if (info->map_info.map[map_pos.y][map_pos.x] != FLOOR)
-			hit = 1;
+			break ;
 	}
-
-	// Get dist and draw
-	dist = get_perp_wall_dist(side, map_pos, info->p_pos, step, dir);
-	return (make_line(info, dist, side, map_pos));
+	if (result.side == 0)
+		result.dist = (map_pos.x - info->p_pos.x + (1 - step.x) / 2) / dir.x;
+	else
+		result.dist = (map_pos.y - info->p_pos.y + (1 - step.y) / 2) / dir.y;
+	return (result);
 }
 
+int	*raycast(t_info *info, t_vec2 dir)
+{
+	t_vec2int			step;
+	t_vec2				side_dist;
+	t_raycast_result	result;
+
+	cal_side_dist(info, dir, &step, &side_dist);
+	result = find_hit_dist(info, dir, side_dist, step);
+	return (make_line(info, result.dist, result.side, dir));
+}

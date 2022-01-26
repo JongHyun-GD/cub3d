@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/17 09:36:04 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/26 14:36:41 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ static void	check_param(int argc, char *filepath)
 	if (argc != 2)
 		error_exit("Invalid parameters.");
 	extension = ft_strrchr(filepath, '.');
+	if (extension == NULL)
+		error_exit("It's an incorrect extension.");
 	if (ft_strncmp(".cub", extension, 5) != 0)
-		error_exit("It's an incorrrect extension.");
+		error_exit("It's an incorrect extension.");
 }
 
 void	parse_map(int argc, char **argv, t_info *info)

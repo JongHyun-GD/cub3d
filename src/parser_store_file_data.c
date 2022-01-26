@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:20 by dason             #+#    #+#             */
-/*   Updated: 2022/01/11 22:18:37 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:27:08 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	**store_file_data(char *filepath)
 	if (!tmp_file_data)
 		error_exit("Malloc allocation failed.");
 	fd = open(filepath, O_RDONLY);
+	if (fd == -1)
+		error_exit("File does not exist.");
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
