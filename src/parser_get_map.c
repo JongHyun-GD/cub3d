@@ -19,22 +19,21 @@ static bool	check_closed_map(t_info *info, int x, int y)
 	int		start_y;
 	int		end_y;
 
-	start_y = y - 1;
+	start_y = y - 2;
 	end_y = y + 1;
-	while (start_y <= end_y)
+	while (++start_y <= end_y)
 	{
-		start_x = x - 1;
+		start_x = x - 2;
 		end_x = x + 1;
-		while (start_x <= end_x)
+		while (++start_x <= end_x)
 		{
-			if (start_x < 0 || start_y < 0)
+			if (start_x < 0 || start_y < 0 || \
+				start_y == info->map_info.map_height)
 				return (false);
-			if (info->map_info.map[start_y][start_x] == SPACE || \
-				info->map_info.map[start_y][start_x] == '\0')
+			if (info->map_info.map[start_y][start_x] == '\0' || \
+				info->map_info.map[start_y][start_x] == SPACE)
 				return (false);
-			start_x++;
 		}
-		start_y++;
 	}
 	return (true);
 }
