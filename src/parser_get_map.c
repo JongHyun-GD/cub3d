@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:10 by dason             #+#    #+#             */
-/*   Updated: 2022/01/25 16:58:38n            ###   ########.fr       */
+/*   Updated: 2022/01/27 15:50:52 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void	get_map(t_info *info, char **tmp_file_data)
 
 	m_i = 0;
 	map = (char **)ft_calloc(info->map_info.map_height + 1, sizeof(char *));
-	print_info(info);
 	if (!map)
 		error_exit("Malloc allocation failed.");
 	i = -1;

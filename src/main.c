@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:29:21 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/26 14:21:03 by dason            ###   ########.fr       */
+/*   Updated: 2022/01/27 15:51:20 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 
 	info.mlx_info.mlx = mlx_init();
 	parse_map(argc, argv, &info);
-	exit(1);
 	info.mlx_info.mlx_win = mlx_new_window(info.mlx_info.mlx,
 			WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	mlx_key_hook(info.mlx_info.mlx_win, key_hook, &info);
