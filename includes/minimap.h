@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/27 17:24:48 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/27 18:52:24 by dason            ###   ########.fr       */
+/*   Created: 2022/01/24 20:31:50 by dason             #+#    #+#             */
+/*   Updated: 2022/02/03 15:43:50 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-# include "mlx.h"
+# define MINIMAP_WIDTH 10
+# define MINIMAP_HEIGHT 10
+# define GREEN 0x00FF00
+# define WHITE 0xFFFFFF
+# define GREY 0xbcbcbc
+# define BLACK 0x000000
+# define MINIMAP_CELL_SIZE 10
+
+# include "cub3d.h"
 # include "info.h"
-# include "raycast.h"
 # include "img.h"
-# include "minimap.h"
+# include <stdio.h>
 
-int	render(t_info *info);
+int		draw_minimap(t_info *info, t_img *img);
 
 #endif

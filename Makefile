@@ -13,7 +13,8 @@ INC_LINK	= -I./includes/
 NAME		= cub3d
 SRC_DIR		= ./src/
 
-C_FILES		= get_next_line.c					\
+C_FILES		= draw_minimap.c					\
+			  get_next_line.c					\
 			  get_next_line_utils.c				\
 			  key_hook.c						\
 			  key_hook2.c						\
