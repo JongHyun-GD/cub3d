@@ -6,7 +6,7 @@
 /*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:31:33 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/24 23:59:37 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/25 22:44:01 by hyun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,57 @@
 
 int	move_forward(t_info *info)
 {
+	t_vec2	dest;
+
+	dest = v2_plus(info->p_pos, info->p_dir);
+	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	{
+		info->p_pos = dest;
+		render(info);
+	}
 	printf("Key W pressed\n");
-	info->p_pos = v2_plus(info->p_pos, info->p_dir);
-	render(info);
 	return (0);
 }
 
 int	move_backward(t_info *info)
 {
+	t_vec2	dest;
+
+	dest = v2_minus(info->p_pos, info->p_dir);
+	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	{
+		info->p_pos = dest;
+		render(info);
+	}
 	printf("Key S pressed\n");
-	info->p_pos = v2_minus(info->p_pos, info->p_dir);
-	render(info);
 	return (0);
 }
 
 int	move_right(t_info *info)
 {
+	t_vec2	dest;
+
+	dest = v2_plus(info->p_pos, info->p_right);
+	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	{
+		info->p_pos = dest;
+		render(info);
+	}
 	printf("Key D pressed\n");
-	info->p_pos = v2_plus(info->p_pos, info->p_right);
-	render(info);
 	return (0);
 }
 
 int	move_left(t_info *info)
 {
+	t_vec2	dest;
+
+	dest = v2_minus(info->p_pos, info->p_right);
+	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	{
+		info->p_pos = dest;
+		render(info);
+	}
 	printf("Key A pressed\n");
-	info->p_pos = v2_minus(info->p_pos, info->p_right);
-	render(info);
 	return (0);
 }
 
