@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:10 by dason             #+#    #+#             */
-/*   Updated: 2022/01/27 15:50:52 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/03 18:10:11 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	set_player_info_we(t_info *info, char map_tile)
 {
 	if (map_tile == 'W')
 	{
+		info->p_fov.x = 0;
+		info->p_fov.y = -0.66;
 		info->p_dir.x = -1;
 		info->p_dir.y = 0;
 		info->p_right.x = 0;
@@ -49,6 +51,8 @@ static void	set_player_info_we(t_info *info, char map_tile)
 	}
 	else if (map_tile == 'E')
 	{
+		info->p_fov.x = 0;
+		info->p_fov.y = 0.66;
 		info->p_dir.x = 1;
 		info->p_dir.y = 0;
 		info->p_right.x = 0;
@@ -58,13 +62,13 @@ static void	set_player_info_we(t_info *info, char map_tile)
 
 static void	set_player_info(t_info *info, char map_tile, int x, int y)
 {
-	info->p_fov.x = 0.66;
-	info->p_fov.y = 0;
 	info->p_pos.x = x;
 	info->p_pos.y = y;
 	info->map_info.map[y][x] = FLOOR;
 	if (map_tile == 'N')
 	{
+		info->p_fov.x = 0.66;
+		info->p_fov.y = 0;
 		info->p_dir.x = 0;
 		info->p_dir.y = -1;
 		info->p_right.x = 1;
@@ -72,6 +76,8 @@ static void	set_player_info(t_info *info, char map_tile, int x, int y)
 	}
 	else if (map_tile == 'S')
 	{
+		info->p_fov.x = -0.66;
+		info->p_fov.y = 0;
 		info->p_dir.x = 0;
 		info->p_dir.y = 1;
 		info->p_right.x = -1;

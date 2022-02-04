@@ -6,85 +6,67 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:31:07 by dason             #+#    #+#             */
-/*   Updated: 2022/02/03 17:39:39 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/04 22:08:27 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
 
-void	draw_player_pixel(t_img *img, int x, int y)
+static bool	is_out_of_the_map(t_info *info, t_vec2 minimap_pos)
 {
-	for (int hy = y * MINIMAP_CELL_SIZE; hy < (y + 1) * MINIMAP_CELL_SIZE; hy++)
-	{
-		for (int hx = x * MINIMAP_CELL_SIZE; hx < (x + 1) * MINIMAP_CELL_SIZE; hx++)
-		{
-			img->data[hy * WIN_WIDTH + hx] = GREEN;
-		}
-	}
+	int		x;
+	int		y;
+
+	x = minimap_pos.x;
+	y = minimap_pos.y;
+	if (y < 0 || x < 0)
+		return (true);
+	if (y >= info->map_info.map_height || x >= info->map_info.map_width)
+		return (true);
+	if (info->map_info.map[y][x] == ' ')
+		return (true);
+	return (false);
 }
 
-void	draw_wall_pixel(t_img *img, int x, int y)
+static void	draw_pixel(t_info *info, t_img *img, t_vec2 m_pos, t_vec2 s_pos)
 {
-	for (int hy = y * MINIMAP_CELL_SIZE; hy < (y + 1) * MINIMAP_CELL_SIZE; hy++)
-	{
-		for (int hx = x * MINIMAP_CELL_SIZE; hx < (x + 1) * MINIMAP_CELL_SIZE; hx++)
-		{
-			img->data[hy * WIN_WIDTH + hx] = GREY;
-		}
-	}
-}
+	int		minimap_x;
+	int		minimap_y;
 
-void	draw_floor_pixel(t_img *img, int x, int y)
-{
-	for (int hy = y * MINIMAP_CELL_SIZE; hy < (y + 1) * MINIMAP_CELL_SIZE; hy++)
-	{
-		for (int hx = x * MINIMAP_CELL_SIZE; hx < (x + 1) * MINIMAP_CELL_SIZE; hx++)
-		{
-			img->data[hy * WIN_WIDTH + hx] = BLACK;
-		}
-	}
+	minimap_x = (int)m_pos.x;
+	minimap_y = (int)m_pos.y;
+	if (minimap_y == (int)info->p_pos.y && minimap_x == (int)info->p_pos.x)
+		draw_player_pixel(img, s_pos.x, s_pos.y);
+	else if (info->map_info.map[minimap_y][minimap_x] == '1')
+		draw_wall_pixel(img, s_pos.x, s_pos.y);
+	else
+		draw_floor_pixel(img, s_pos.x, s_pos.y);
 }
 
 int	draw_minimap(t_info *info, t_img *img)
 {
-	int		x;
-	int		y;
-	int		minimap_x;
-	int		minimap_y;
+	t_vec2	mmap_pos;
+	t_vec2	screen_pos;
 
-	minimap_y = 0;
-	y = (int)info->p_pos.y - (MINIMAP_HEIGHT / 2) - 1;
-	while (++y <= (int)info->p_pos.y + (MINIMAP_HEIGHT / 2))
+	screen_pos.y = 0;
+	mmap_pos.y = (int)info->p_pos.y - (MINIMAP_HEIGHT / 2) - 1;
+	while (++mmap_pos.y <= (int)info->p_pos.y + (MINIMAP_HEIGHT / 2))
 	{
-		minimap_x = 0;
-		x = (int)info->p_pos.x - (MINIMAP_WIDTH / 2) - 1;
-		while (++x <= (int)info->p_pos.x + (MINIMAP_WIDTH / 2))
+		screen_pos.x = 0;
+		mmap_pos.x = (int)info->p_pos.x - (MINIMAP_WIDTH / 2) - 1;
+		while (++mmap_pos.x <= (int)info->p_pos.x + (MINIMAP_WIDTH / 2))
 		{
-			if (y < 0 || x < 0 || \
-			y >= info->map_info.map_height || \
-			x >= info->map_info.map_width)
+			if (is_out_of_the_map(info, mmap_pos) == true)
 			{
-				minimap_x++;
-				continue ;
 			}
-			else if (info->map_info.map[y] == NULL || \
-				info->map_info.map[y][x] == '\0')
+			else if (info->map_info.map[(int)mmap_pos.y] == NULL || \
+				info->map_info.map[(int)mmap_pos.y][(int)mmap_pos.x] == '\0')
 				break ;
-			else if (y == info->p_pos.y && x == info->p_pos.x)
-				draw_player_pixel(img, minimap_x, minimap_y);
-			else if (info->map_info.map[y][x] == ' ')
-			{
-				minimap_x++;
-				continue;
-			}
-			else if (info->map_info.map[y][x] == '1')
-				draw_wall_pixel(img, minimap_x, minimap_y);
 			else
-				draw_floor_pixel(img, minimap_x, minimap_y);
-			minimap_x++;
+				draw_pixel(info, img, mmap_pos, screen_pos);
+			screen_pos.x++;
 		}
-		minimap_y++;
+		screen_pos.y++;
 	}
 	return (0);
 }
-

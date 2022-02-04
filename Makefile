@@ -14,6 +14,7 @@ NAME		= cub3d
 SRC_DIR		= ./src/
 
 C_FILES		= draw_minimap.c					\
+			  draw_pixel.c						\
 			  get_next_line.c					\
 			  get_next_line_utils.c				\
 			  key_hook.c						\
