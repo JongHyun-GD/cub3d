@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 23:01:40 by dason             #+#    #+#             */
-/*   Updated: 2022/01/25 16:58:43 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/05 14:39:37 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static void	check_file_data(t_info *info)
 		error_exit("Invalid map size.");
 }
 
-/* TODO: info안에 유형 식별자값이 0인 경우 예외처리
-	- get_type_data 후, info안에 값들이 전부 있는지 확인 */
 void	get_file_data(t_info *info, char **tmp_file_data)
 {
 	char	**type_line;

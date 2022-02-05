@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:29:21 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/27 15:51:20 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:08:00 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 {
 	t_info	info;
 
+	ft_memset(&info, 0, sizeof(t_info));
 	info.mlx_info.mlx = mlx_init();
 	parse_map(argc, argv, &info);
 	info.mlx_info.mlx_win = mlx_new_window(info.mlx_info.mlx,

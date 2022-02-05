@@ -44,9 +44,6 @@ all			: $(NAME)
 
 bonus		: all
 
-parser		: $(LIBFT) $(OBJS)
-	gcc $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(LFLAGS)
-
 $(NAME)		: $(MLX) $(LIBFT) $(OBJS)
 	gcc $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT) $(MLX) -o $(NAME) $(LFLAGS)
 

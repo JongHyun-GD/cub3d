@@ -6,35 +6,11 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:52 by dason             #+#    #+#             */
-/*   Updated: 2022/01/27 15:50:36 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/05 14:44:58 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-void	print_info(t_info *info)
-{
-	int		i;
-
-	printf("### print_info ###\n");
-	printf("p_pos: (%f, %f)\n", info->p_pos.x, info->p_pos.y);
-	printf("p_direction.x: (%f, %f)\n", info->p_dir.x, info->p_dir.y);
-	printf("no_texture: %p\n", info->map_info.no_texture);
-	printf("so_texture: %p\n", info->map_info.so_texture);
-	printf("we_texture: %p\n", info->map_info.we_texture);
-	printf("ea_texture: %p\n", info->map_info.ea_texture);
-	printf("floor_color: %d\n", info->map_info.floor_color);
-	printf("ceiling_color: %d\n", info->map_info.ceiling_color);
-	printf("map_width: %d\n", info->map_info.map_width);
-	printf("map_height: %d\n", info->map_info.map_height);
-	printf("map: \n");
-	if (info->map_info.map)
-	{
-		i = -1;
-		while (info->map_info.map[++i])
-			printf("%s\n", info->map_info.map[i]);
-	}
-}
 
 static void	check_param(int argc, char *filepath)
 {
@@ -59,5 +35,4 @@ void	parse_map(int argc, char **argv, t_info *info)
 	get_file_data(info, tmp_file_data);
 	get_map(info, tmp_file_data);
 	free_double_pointer(&tmp_file_data);
-	print_info(info);
 }

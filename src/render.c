@@ -6,7 +6,7 @@
 /*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:57 by hyun              #+#    #+#             */
-/*   Updated: 2022/02/03 18:07:35 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:16:21 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ int	draw_line(t_img *img, int *line, int x)
 	return (0);
 }
 
+void	clear_img_win(t_info *info)
+{
+	mlx_clear_window(info->mlx_info.mlx, info->mlx_info.mlx_win);
+	if (info->img)
+	{
+		mlx_destroy_image(info->mlx_info.mlx, info->img->img_ptr);
+		free(info->img);
+	}
+}
+
 int	render(t_info *info)
 {
 	int		w;
@@ -43,6 +53,7 @@ int	render(t_info *info)
 	t_img	*img;
 	int		*line;
 
+	clear_img_win(info);
 	img = (t_img *)malloc(sizeof(t_img));
 	img->img_ptr = mlx_new_image(info->mlx_info.mlx, WIN_WIDTH, WIN_HEIGHT);
 	img->data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, \
@@ -53,9 +64,11 @@ int	render(t_info *info)
 		dir = cal_dir(info, w);
 		line = raycast(info, dir);
 		draw_line(img, line, w);
+		free(line);
 	}
 	draw_minimap(info, img);
 	mlx_put_image_to_window(info->mlx_info.mlx, info->mlx_info.mlx_win, \
 		img->img_ptr, 0, 0);
+	info->img = img;
 	return (0);
 }
