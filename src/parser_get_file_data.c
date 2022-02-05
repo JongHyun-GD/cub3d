@@ -17,16 +17,18 @@ static void	check_num_of_type_id(char **tmp_file_data)
 	char	**split;
 	int		type_count;
 	int		i;
+	int		kind_of_type;
 
 	type_count = 0;
 	i = -1;
 	while (tmp_file_data[++i])
 	{
 		split = ft_split(tmp_file_data[i], ' ');
-		if (get_kind_of_type(split[0]) != TYPE_MAP)
+		kind_of_type = get_kind_of_type(split[0]);
+		if (kind_of_type != TYPE_MAP && kind_of_type != TYPE_NONE)
 			type_count++;
 		free_double_pointer(&split);
-	}	
+	}
 	if (type_count > 6)
 		error_exit("There are too many types.");
 }

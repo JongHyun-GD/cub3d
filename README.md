@@ -37,6 +37,9 @@
 
 - [x] map이 닫혀있는가?
 
+- [x] 플레이어가 한 명인가?
+
+- [x] check_closed_map에서 위 아래 범위 넘어가면 에러 출력하기
 ---
 # PARSING TODO
 

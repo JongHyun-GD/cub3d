@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:19:11 by dason             #+#    #+#             */
-/*   Updated: 2022/01/20 21:49:15 by hyun             ###   ########.fr       */
+/*   Updated: 2022/01/26 20:33:53 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct s_info
 	t_vec2		p_right;
 	t_vec2		p_dir;
 	t_vec2		p_fov;
-	int			map_width;
-	int			map_height;
 	t_map		map_info;
 }	t_info;
 

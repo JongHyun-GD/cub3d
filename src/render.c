@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:18:57 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/24 20:44:59 by hyun             ###   ########.fr       */
+/*   Updated: 2022/02/03 18:07:35 by dason            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-#include "stdio.h"
 
 t_vec2	cal_dir(t_info *info, int camera_step)
 {
@@ -55,6 +54,7 @@ int	render(t_info *info)
 		line = raycast(info, dir);
 		draw_line(img, line, w);
 	}
+	draw_minimap(info, img);
 	mlx_put_image_to_window(info->mlx_info.mlx, info->mlx_info.mlx_win, \
 		img->img_ptr, 0, 0);
 	return (0);
