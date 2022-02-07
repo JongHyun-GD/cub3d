@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_get_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dason <dason@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:18:10 by dason             #+#    #+#             */
-/*   Updated: 2022/02/03 18:10:11 by dason            ###   ########.fr       */
+/*   Updated: 2022/02/07 18:01:20 by jongpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	set_player_info_we(t_info *info, char map_tile)
 
 static void	set_player_info(t_info *info, char map_tile, int x, int y)
 {
-	info->p_pos.x = x;
-	info->p_pos.y = y;
+	info->p_pos.x = x + 0.5;
+	info->p_pos.y = y + 0.5;
 	info->map_info.map[y][x] = FLOOR;
 	if (map_tile == 'N')
 	{

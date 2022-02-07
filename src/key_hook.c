@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:31:33 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/25 22:44:01 by hyun             ###   ########.fr       */
+/*   Updated: 2022/02/07 18:08:27 by jongpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int	move_forward(t_info *info)
 {
 	t_vec2	dest;
+	t_vec2	move_amount;
 
-	dest = v2_plus(info->p_pos, info->p_dir);
+	move_amount.x = round(info->p_dir.x * 100) / 100;
+	move_amount.y = round(info->p_dir.y * 100) / 100;
+	dest = v2_plus(info->p_pos, move_amount);
 	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
@@ -29,8 +32,11 @@ int	move_forward(t_info *info)
 int	move_backward(t_info *info)
 {
 	t_vec2	dest;
+	t_vec2	move_amount;
 
-	dest = v2_minus(info->p_pos, info->p_dir);
+	move_amount.x = round(info->p_dir.x * 100) / 100;
+	move_amount.y = round(info->p_dir.y * 100) / 100;
+	dest = v2_minus(info->p_pos, move_amount);
 	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
@@ -43,8 +49,11 @@ int	move_backward(t_info *info)
 int	move_right(t_info *info)
 {
 	t_vec2	dest;
+	t_vec2	move_amount;
 
-	dest = v2_plus(info->p_pos, info->p_right);
+	move_amount.x = round(info->p_right.x * 100) / 100;
+	move_amount.y = round(info->p_right.y * 100) / 100;
+	dest = v2_plus(info->p_pos, move_amount);
 	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
@@ -57,8 +66,11 @@ int	move_right(t_info *info)
 int	move_left(t_info *info)
 {
 	t_vec2	dest;
+	t_vec2	move_amount;
 
-	dest = v2_minus(info->p_pos, info->p_right);
+	move_amount.x = round(info->p_right.x * 100) / 100;
+	move_amount.y = round(info->p_right.y * 100) / 100;
+	dest = v2_minus(info->p_pos, move_amount);
 	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
