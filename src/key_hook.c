@@ -6,7 +6,7 @@
 /*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:31:33 by hyun              #+#    #+#             */
-/*   Updated: 2022/02/07 18:08:27 by jongpark         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:13:03 by jongpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	move_forward(t_info *info)
 	t_vec2	dest;
 	t_vec2	move_amount;
 
-	move_amount.x = round(info->p_dir.x * 100) / 100;
-	move_amount.y = round(info->p_dir.y * 100) / 100;
+	move_amount.x = round(info->p_dir.x * 10) / 10;
+	move_amount.y = round(info->p_dir.y * 10) / 10;
 	dest = v2_plus(info->p_pos, move_amount);
-	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	if ((int)round(dest.x * 10) % 10 != 0 && \
+		(int)round(dest.y * 10) % 10 != 0 && \
+		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
 		render(info);
 	}
-	printf("Key W pressed\n");
+	printf("Key W pressed. p_pos(%f, %f)\n", info->p_pos.x, info->p_pos.y);
 	return (0);
 }
 
@@ -34,10 +36,12 @@ int	move_backward(t_info *info)
 	t_vec2	dest;
 	t_vec2	move_amount;
 
-	move_amount.x = round(info->p_dir.x * 100) / 100;
-	move_amount.y = round(info->p_dir.y * 100) / 100;
+	move_amount.x = round(info->p_dir.x * 10) / 10;
+	move_amount.y = round(info->p_dir.y * 10) / 10;
 	dest = v2_minus(info->p_pos, move_amount);
-	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	if ((int)round(dest.x * 10) % 10 != 0 && \
+		(int)round(dest.y * 10) % 10 != 0 && \
+		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
 		render(info);
@@ -51,10 +55,11 @@ int	move_right(t_info *info)
 	t_vec2	dest;
 	t_vec2	move_amount;
 
-	move_amount.x = round(info->p_right.x * 100) / 100;
-	move_amount.y = round(info->p_right.y * 100) / 100;
-	dest = v2_plus(info->p_pos, move_amount);
-	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	move_amount.x = round(info->p_right.x * 10) / 10;
+	move_amount.y = round(info->p_right.y * 10) / 10;
+	if ((int)round(dest.x * 10) % 10 != 0 && \
+		(int)round(dest.y * 10) % 10 != 0 && \
+		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
 		render(info);
@@ -68,10 +73,12 @@ int	move_left(t_info *info)
 	t_vec2	dest;
 	t_vec2	move_amount;
 
-	move_amount.x = round(info->p_right.x * 100) / 100;
-	move_amount.y = round(info->p_right.y * 100) / 100;
+	move_amount.x = round(info->p_right.x * 10) / 10;
+	move_amount.y = round(info->p_right.y * 10) / 10;
 	dest = v2_minus(info->p_pos, move_amount);
-	if (info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+	if ((int)round(dest.x * 10) % 10 != 0 && \
+		(int)round(dest.y * 10) % 10 != 0 && \
+		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
 	{
 		info->p_pos = dest;
 		render(info);
