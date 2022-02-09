@@ -10,7 +10,7 @@ LIBFT_DIR	= ./libft/
 LIBFT		= $(addprefix $(LIBFT_DIR), $(LIBFT_NAME))
 
 INC_LINK	= -I./includes/
-NAME		= cub3d
+NAME		= cub3D
 SRC_DIR		= ./src/
 
 C_FILES		= draw_minimap.c					\
