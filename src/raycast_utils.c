@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyun <hyun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 23:55:21 by hyun              #+#    #+#             */
-/*   Updated: 2022/01/24 23:55:29 by hyun             ###   ########.fr       */
+/*   Updated: 2022/02/09 20:45:37 by jongpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	cal_tex_color(t_tex_vars *vars, t_info *info, int side, t_vec2 dir)
 	vars->tex_pos += vars->step;
 	if (side == 1 && dir.y <= 0)
 		vars->color = \
-			info->map_info.ea_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
+			info->map_info.so_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
 	else if (side == 1 && dir.y > 0)
 		vars->color = \
-			info->map_info.we_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
+			info->map_info.no_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
 	else if (side == 0 && dir.x >= 0)
 		vars->color = \
-			info->map_info.no_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
+			info->map_info.we_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
 	else if (side == 0 && dir.x < 0)
 		vars->color = \
-			info->map_info.so_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
+			info->map_info.ea_texture[vars->tex.y * TEX_WIDTH + vars->tex.x];
 }
 
 void	set_tex_vars(t_tex_vars *vars, int side, t_vec2 dir)
