@@ -6,7 +6,7 @@
 /*   By: jongpark <jongpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 20:31:33 by hyun              #+#    #+#             */
-/*   Updated: 2022/02/09 11:13:03 by jongpark         ###   ########.fr       */
+/*   Updated: 2022/02/09 13:23:57 by jongpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	move_right(t_info *info)
 
 	move_amount.x = round(info->p_right.x * 10) / 10;
 	move_amount.y = round(info->p_right.y * 10) / 10;
+	dest = v2_plus(info->p_pos, move_amount);
 	if ((int)round(dest.x * 10) % 10 != 0 && \
 		(int)round(dest.y * 10) % 10 != 0 && \
 		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
@@ -78,7 +79,7 @@ int	move_left(t_info *info)
 	dest = v2_minus(info->p_pos, move_amount);
 	if ((int)round(dest.x * 10) % 10 != 0 && \
 		(int)round(dest.y * 10) % 10 != 0 && \
-		info->map_info.map[(int)dest.y][(int)dest.x] == FLOOR)
+		info->map_info.map[(int)round(dest.y)][(int)round(dest.x)] == FLOOR)
 	{
 		info->p_pos = dest;
 		render(info);
