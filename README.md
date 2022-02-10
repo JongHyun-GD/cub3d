@@ -10,7 +10,7 @@ cub3d는 [Wolfenstein 3D](http://users.atw.hu/wolf3d/)에서 사용한 렌더링
 
 ## 구현 사항
 ### Rendering process based on DDA Algorithm
-이 프로젝트의 렌더링은 [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))을 기반합니다. [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))은 raycast를 할 때, collision detection을 최소화하여 매우 빠른 시간안에 정확한 hit info를 얻을 수 있도록 해줍니다. 이러한 렌더링은 플레이어가 key input을 줄 때마다 실행됩니다. 이를 통해 카메라 움직임을 구현하였습니다.
+이 프로젝트의 렌더링은 [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))을 기반합니다. [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))은 raycast를 할 때, collision detection을 최소화하여 매우 빠른 시간안에 정확한 hit info를 얻을 수 있도록 해줍니다. 이러한 렌더링은 플레이어의 키 입력 때마다 실행됩니다. 이를 통해 카메라 움직임을 구현하였습니다.
 
 ### Texture Mapping
 렌더링 알고리즘 상에서 벽 텍스쳐를 각 뱡향에 따라 다르게 설정할 수 있고 이를 바르게 매핑할 수 있습니다. 이 때, 각 텍스쳐 파일은 .xpm 포맷으로 한정하였습니다.
@@ -50,7 +50,7 @@ make
 <br>
 
 ## 개발 기간
-6주 (2021.12.07 ~ 2022.02.09)
+6주 (2021.12.27 ~ 2022.02.09)
 
 <br>
 
