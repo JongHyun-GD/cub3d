@@ -1,54 +1,30 @@
-# PARSING 체크 리스트
+# cub3D
+![cub3D_play_capture](https://user-images.githubusercontent.com/58730856/153344101-c8049cbb-9886-4c0b-b615-a9a1ee6c4e02.gif)
 
-### 매개변수
-- [x] 매개변수의 개수가 1개인가?
 
-- [x] 매개변수인 map의 경로가 올바른가?
+## 개요
+cub3d는 [Wolfenstein 3D](http://users.atw.hu/wolf3d/)에서 사용한 렌더링 알고리즘을 활용해 2차원 맵을 3차원으로 렌더링하는 프로그램입니다. 플레이어는 생성된 맵에서 움직여 여러각도에서 맵을 볼 수 있습니다. 또한 맵 명세(.cub) 파일을 바꾸어 맵 구조 / 벽 텍스쳐 / 바닥과 천장 색깔 등을 수정할 수 있습니다.
 
-- [x] 파일 확장자가 .cub인가?
+## 구현 사항
+- ### Rendering process based on DDA Algorithm
+이 프로젝트의 렌더링은 [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))을 기반합니다. [DDA 알고리즘](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm))은 raycast를 할 때, collision detection을 최소화하여 매우 빠른 시간안에 정확한 hit info를 얻을 수 있도록 해줍니다. 이러한 렌더링은 플레이어가 key input을 줄 때마다 실행됩니다. 이를 통해 카메라 움직임을 구현하였습니다.
 
-### 유형 식별자
+- ### Texture Mapping
+렌더링 알고리즘 상에서 벽 텍스쳐를 각 뱡향에 따라 다르게 설정할 수 있고 이를 바르게 매핑할 수 있습니다. 이 때, 각 텍스쳐 파일은 .xpm 포맷으로 한정하였습니다.
 
-- [x] 유형 식별자가 올바른가? (R, NO, SO, ..., S, F, C)
+- ### Minimap System
+플레이어의 위치를 단순화된 미니맵 UI를 통해 확인할 수 있습니다. 플레이어는 초록색, 벽은 회색으로 칠해져 플레이어의 상대적 위치를 쉽게 알 수 있습니다.
 
-- [x] 유형 식별자 데이터 개수가 올바른가?
->
-> - [x] R의 데이터 2개
->	
-> - [x] NO, SO, WE, EA, S의 데이터 1개
->	
-> - [x] F, C의 데이터 2개~3개
+- ### Wall Coliision
+Player는 벽을 통과할 수 없습니다. 이는 키 입력에 따른 플레이어 위치 계산시 부적절한 위치라면 움직임과 렌더링이 일어나지 않도록 함으로써 구현했습니다.
 
-- [x] 유형 식별자의 데이터가 올바른가?
->	
-> - [x] width와 height의 값이 너무 크거나 작지 않은가?
->	width 320미만 4096 초과
->	height 200 미만 2160 초과
->
-> - [x] texture_path가 올바른가?
->
-> - [x] F와 C의 구분자(,) 외에 숫자가 아닌 값이 들어왔는가?
->
-> - [x] F와 C의 값이 (0 ~ 255)를 벗어났는가?
->
-> - [x] type data 사이에 탭으로 구분 되어 있는가?
+- ### Invalid Map detection
+렌더링할 맵에 대한 명세를 담은 .cub파일이 부적절한 형식을 가지는 지 테스트하고 적합한 형식이 아니라면 프로그램이 실행되지 않습니다.
 
-### Map
+## 개발 기간
+6주 (2021.12.07 ~ 2022.02.09)
 
-- [x] map이 닫혀있는가?
+## Contributors
+[박종현](https://github.com/JongHyun-GD) | `Rendering algorithm`, `Collision Detection`, `Texture Mapping`
 
-- [x] 플레이어가 한 명인가?
-
-- [x] check_closed_map에서 위 아래 범위 넘어가면 에러 출력하기
----
-# PARSING TODO
-
-- [x] RGB값은 int형 변수에 bit연산해서 넣기
-
-- [x] map_info 구조체에 있는 texture는 path->image로 변환해서 넣기
-
-- [x] char **map에 player는 N, S, W, E가 아닌 숫자로 넣기. ex) 3
-
-- [x] info.p_pos에 플레이어의 현재 위치 받기
-
-- [ ] type_data 추가로 체크 할 케이스가 있는지 생각해보기
+[손대호](https://github.com/sondho) | `Parsing map file`, `Error Detection on map file`, `Minimap system`
